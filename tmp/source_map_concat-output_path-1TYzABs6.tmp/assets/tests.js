@@ -5,13 +5,36 @@ define('vv-dio-web/tests/acceptance/list-sensors-test', ['qunit', 'vv-dio-web/te
 
   (0, _moduleForAcceptance.default)('Acceptance | list sensors');
 
-  (0, _qunit.test)('should show sensor displays on the home page', function (assert) {});
+  (0, _qunit.test)('should show sensor displays on the home page', function (assert) {
+    visit('/');
+    andThen(function () {
+      assert.equal(currentURL(), '/sensors', 'should redirect automatically');
+    });
+  });
 
-  (0, _qunit.test)('should link to information about the company', function (assert) {});
+  (0, _qunit.test)('should link to information about the company', function (assert) {
+    visit('/');
+    click('a:contains("About")');
+    andThen(function () {
+      assert.equal(currentURL(), '/about', 'should navigate to about');
+    });
+  });
 
-  (0, _qunit.test)('should link to contact information', function (assert) {});
+  (0, _qunit.test)('should link to contact information', function (assert) {
+    visit('/');
+    click('a:contains("Contact")');
+    andThen(function () {
+      assert.equal(currentURL(), '/contact', 'should navigate to contact');
+    });
+  });
 
-  (0, _qunit.test)('should link to the graph of sensor data', function (assert) {});
+  (0, _qunit.test)('should link to the graph of sensor data', function (assert) {
+    visit('/');
+    click('a:contains("Graph")');
+    andThen(function () {
+      assert.equal(currentURL(), '/graph', 'should navigate to graph');
+    });
+  });
 
   (0, _qunit.test)('should show details for the selected sensor', function (assert) {});
 });
@@ -154,7 +177,7 @@ define('vv-dio-web/tests/tests.lint-test', [], function () {
 
   QUnit.test('acceptance/list-sensors-test.js', function (assert) {
     assert.expect(1);
-    assert.ok(false, 'acceptance/list-sensors-test.js should pass ESLint\n\n6:64 - \'assert\' is defined but never used. (no-unused-vars)\n10:64 - \'assert\' is defined but never used. (no-unused-vars)\n14:54 - \'assert\' is defined but never used. (no-unused-vars)\n18:59 - \'assert\' is defined but never used. (no-unused-vars)\n22:63 - \'assert\' is defined but never used. (no-unused-vars)');
+    assert.ok(false, 'acceptance/list-sensors-test.js should pass ESLint\n\n37:63 - \'assert\' is defined but never used. (no-unused-vars)');
   });
 
   QUnit.test('helpers/destroy-app.js', function (assert) {
