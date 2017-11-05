@@ -247,9 +247,63 @@ define('vv-dio-web/router', ['exports', 'vv-dio-web/config/environment'], functi
     rootURL: _environment.default.rootURL
   });
 
-  Router.map(function () {});
+  Router.map(function () {
+    this.route('about');
+    this.route('contact');
+    this.route('sensors');
+    this.route('graph');
+  });
 
   exports.default = Router;
+});
+define('vv-dio-web/routes/about', ['exports'], function (exports) {
+  'use strict';
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  var Route = Ember.Route;
+  exports.default = Route.extend({});
+});
+define('vv-dio-web/routes/contact', ['exports'], function (exports) {
+  'use strict';
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  var Route = Ember.Route;
+  exports.default = Route.extend({});
+});
+define('vv-dio-web/routes/graph', ['exports'], function (exports) {
+  'use strict';
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  var Route = Ember.Route;
+  exports.default = Route.extend({});
+});
+define('vv-dio-web/routes/index', ['exports'], function (exports) {
+  'use strict';
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  var Route = Ember.Route;
+  exports.default = Route.extend({
+    beforeModel: function beforeModel() {
+      this.replaceWith('sensors');
+    }
+  });
+});
+define('vv-dio-web/routes/sensors', ['exports'], function (exports) {
+  'use strict';
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  var Route = Ember.Route;
+  exports.default = Route.extend({});
 });
 define('vv-dio-web/services/ajax', ['exports', 'ember-ajax/services/ajax'], function (exports, _ajax) {
   'use strict';
@@ -264,13 +318,53 @@ define('vv-dio-web/services/ajax', ['exports', 'ember-ajax/services/ajax'], func
     }
   });
 });
+define("vv-dio-web/templates/about", ["exports"], function (exports) {
+  "use strict";
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  exports.default = Ember.HTMLBars.template({ "id": "mw39LH9A", "block": "{\"symbols\":[],\"statements\":[[6,\"div\"],[9,\"class\",\"jumbo\"],[7],[0,\"\\n  \"],[6,\"div\"],[9,\"class\",\"right tomster\"],[7],[8],[0,\"\\n  \"],[6,\"h2\"],[7],[0,\"About DiO and Volcano Veggies\"],[8],[0,\"\\n  \"],[6,\"p\"],[7],[0,\"\\n    DiO is an aquaponics management system, built for Volcano Veggies.\\n  \"],[8],[0,\"\\n\"],[4,\"link-to\",[\"contact\"],[[\"class\"],[\"button\"]],{\"statements\":[[0,\"    Contact Us\\n\"]],\"parameters\":[]},null],[8]],\"hasEval\":false}", "meta": { "moduleName": "vv-dio-web/templates/about.hbs" } });
+});
 define("vv-dio-web/templates/application", ["exports"], function (exports) {
   "use strict";
 
   Object.defineProperty(exports, "__esModule", {
     value: true
   });
-  exports.default = Ember.HTMLBars.template({ "id": "Hqn/uW17", "block": "{\"symbols\":[],\"statements\":[[0,\"\\n\\n\"],[1,[18,\"outlet\"],false]],\"hasEval\":false}", "meta": { "moduleName": "vv-dio-web/templates/application.hbs" } });
+  exports.default = Ember.HTMLBars.template({ "id": "6YaNyamU", "block": "{\"symbols\":[],\"statements\":[[6,\"div\"],[9,\"class\",\"container\"],[7],[0,\"\\n  \"],[6,\"div\"],[9,\"class\",\"menu\"],[7],[0,\"\\n\"],[4,\"link-to\",[\"index\"],null,{\"statements\":[[0,\"      \"],[6,\"h1\"],[7],[0,\"\\n        \"],[6,\"em\"],[7],[0,\"DiO\"],[8],[0,\"\\n      \"],[8],[0,\"\\n\"]],\"parameters\":[]},null],[0,\"    \"],[6,\"div\"],[9,\"class\",\"links\"],[7],[0,\"\\n\"],[4,\"link-to\",[\"graph\"],null,{\"statements\":[[0,\"        Graph\\n\"]],\"parameters\":[]},null],[4,\"link-to\",[\"about\"],null,{\"statements\":[[0,\"        About\\n\"]],\"parameters\":[]},null],[4,\"link-to\",[\"contact\"],null,{\"statements\":[[0,\"        Contact\\n\"]],\"parameters\":[]},null],[0,\"    \"],[8],[0,\"\\n  \"],[8],[0,\"\\n  \"],[6,\"div\"],[9,\"class\",\"body\"],[7],[0,\"\\n    \"],[1,[18,\"outlet\"],false],[0,\"\\n  \"],[8],[0,\"\\n\"],[8]],\"hasEval\":false}", "meta": { "moduleName": "vv-dio-web/templates/application.hbs" } });
+});
+define("vv-dio-web/templates/contact", ["exports"], function (exports) {
+  "use strict";
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  exports.default = Ember.HTMLBars.template({ "id": "qUTP5K0/", "block": "{\"symbols\":[],\"statements\":[[6,\"div\"],[9,\"class\",\"jumbo\"],[7],[0,\"\\n  \"],[6,\"div\"],[9,\"class\",\"right tomster\"],[7],[8],[0,\"\\n  \"],[6,\"h2\"],[7],[0,\"Contact Us\"],[8],[0,\"\\n\"],[4,\"link-to\",[\"about\"],[[\"class\"],[\"button\"]],{\"statements\":[[0,\"    About\\n\"]],\"parameters\":[]},null],[0,\"  \"],[6,\"p\"],[7],[0,\"\\n    \"],[6,\"a\"],[9,\"href\",\"mailto:tappertj@oregonstate.edu\"],[7],[0,\"tappertj@oregonstate.edu\"],[8],[0,\"\\n  \"],[8],[0,\"\\n\"],[8]],\"hasEval\":false}", "meta": { "moduleName": "vv-dio-web/templates/contact.hbs" } });
+});
+define("vv-dio-web/templates/graph", ["exports"], function (exports) {
+  "use strict";
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  exports.default = Ember.HTMLBars.template({ "id": "U+S0T502", "block": "{\"symbols\":[],\"statements\":[[6,\"div\"],[9,\"class\",\"jumbo\"],[7],[0,\"\\n  \"],[6,\"div\"],[9,\"class\",\"right tomster\"],[7],[8],[0,\"\\n  \"],[6,\"h2\"],[7],[0,\"Graph\"],[8],[0,\"\\n  \"],[6,\"p\"],[7],[0,\"\\n    Insert Graph here\\n  \"],[8],[0,\"\\n\"],[8]],\"hasEval\":false}", "meta": { "moduleName": "vv-dio-web/templates/graph.hbs" } });
+});
+define("vv-dio-web/templates/index", ["exports"], function (exports) {
+  "use strict";
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  exports.default = Ember.HTMLBars.template({ "id": "Gp7VSV9j", "block": "{\"symbols\":[],\"statements\":[[1,[18,\"outlet\"],false]],\"hasEval\":false}", "meta": { "moduleName": "vv-dio-web/templates/index.hbs" } });
+});
+define("vv-dio-web/templates/sensors", ["exports"], function (exports) {
+  "use strict";
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  exports.default = Ember.HTMLBars.template({ "id": "RnEdPPTr", "block": "{\"symbols\":[],\"statements\":[[6,\"div\"],[9,\"class\",\"jumbo\"],[7],[0,\"\\n  \"],[6,\"div\"],[9,\"class\",\"right tomster\"],[7],[8],[0,\"\\n  \"],[6,\"h2\"],[7],[0,\"Sensors\"],[8],[0,\"\\n  \"],[6,\"p\"],[7],[0,\"LIST O' SENSORS\"],[8],[0,\"\\n\"],[4,\"link-to\",[\"about\"],[[\"class\"],[\"button\"]],{\"statements\":[[0,\"    About Us\\n\"]],\"parameters\":[]},null],[8]],\"hasEval\":false}", "meta": { "moduleName": "vv-dio-web/templates/sensors.hbs" } });
 });
 
 

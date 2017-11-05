@@ -34,6 +34,31 @@ define('vv-dio-web/tests/app.lint-test', [], function () {
     assert.expect(1);
     assert.ok(true, 'router.js should pass ESLint\n\n');
   });
+
+  QUnit.test('routes/about.js', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'routes/about.js should pass ESLint\n\n');
+  });
+
+  QUnit.test('routes/contact.js', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'routes/contact.js should pass ESLint\n\n');
+  });
+
+  QUnit.test('routes/graph.js', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'routes/graph.js should pass ESLint\n\n');
+  });
+
+  QUnit.test('routes/index.js', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'routes/index.js should pass ESLint\n\n');
+  });
+
+  QUnit.test('routes/sensors.js', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'routes/sensors.js should pass ESLint\n\n');
+  });
 });
 define('vv-dio-web/tests/helpers/destroy-app', ['exports'], function (exports) {
   'use strict';
@@ -155,6 +180,96 @@ define('vv-dio-web/tests/tests.lint-test', [], function () {
   QUnit.test('test-helper.js', function (assert) {
     assert.expect(1);
     assert.ok(true, 'test-helper.js should pass ESLint\n\n');
+  });
+
+  QUnit.test('unit/routes/about-test.js', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'unit/routes/about-test.js should pass ESLint\n\n');
+  });
+
+  QUnit.test('unit/routes/contact-test.js', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'unit/routes/contact-test.js should pass ESLint\n\n');
+  });
+
+  QUnit.test('unit/routes/graph-test.js', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'unit/routes/graph-test.js should pass ESLint\n\n');
+  });
+
+  QUnit.test('unit/routes/index-test.js', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'unit/routes/index-test.js should pass ESLint\n\n');
+  });
+
+  QUnit.test('unit/routes/sensors-test.js', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'unit/routes/sensors-test.js should pass ESLint\n\n');
+  });
+});
+define('vv-dio-web/tests/unit/routes/about-test', ['ember-qunit'], function (_emberQunit) {
+  'use strict';
+
+  (0, _emberQunit.moduleFor)('route:about', 'Unit | Route | about', {
+    // Specify the other units that are required for this test.
+    // needs: ['controller:foo']
+  });
+
+  (0, _emberQunit.test)('it exists', function (assert) {
+    var route = this.subject();
+    assert.ok(route);
+  });
+});
+define('vv-dio-web/tests/unit/routes/contact-test', ['ember-qunit'], function (_emberQunit) {
+  'use strict';
+
+  (0, _emberQunit.moduleFor)('route:contact', 'Unit | Route | contact', {
+    // Specify the other units that are required for this test.
+    // needs: ['controller:foo']
+  });
+
+  (0, _emberQunit.test)('it exists', function (assert) {
+    var route = this.subject();
+    assert.ok(route);
+  });
+});
+define('vv-dio-web/tests/unit/routes/graph-test', ['ember-qunit'], function (_emberQunit) {
+  'use strict';
+
+  (0, _emberQunit.moduleFor)('route:graph', 'Unit | Route | graph', {
+    // Specify the other units that are required for this test.
+    // needs: ['controller:foo']
+  });
+
+  (0, _emberQunit.test)('it exists', function (assert) {
+    var route = this.subject();
+    assert.ok(route);
+  });
+});
+define('vv-dio-web/tests/unit/routes/index-test', ['ember-qunit'], function (_emberQunit) {
+  'use strict';
+
+  (0, _emberQunit.moduleFor)('route:index', 'Unit | Route | index', {
+    // Specify the other units that are required for this test.
+    // needs: ['controller:foo']
+  });
+
+  (0, _emberQunit.test)('it exists', function (assert) {
+    var route = this.subject();
+    assert.ok(route);
+  });
+});
+define('vv-dio-web/tests/unit/routes/sensors-test', ['ember-qunit'], function (_emberQunit) {
+  'use strict';
+
+  (0, _emberQunit.moduleFor)('route:sensors', 'Unit | Route | sensors', {
+    // Specify the other units that are required for this test.
+    // needs: ['controller:foo']
+  });
+
+  (0, _emberQunit.test)('it exists', function (assert) {
+    var route = this.subject();
+    assert.ok(route);
   });
 });
 require('vv-dio-web/tests/test-helper');

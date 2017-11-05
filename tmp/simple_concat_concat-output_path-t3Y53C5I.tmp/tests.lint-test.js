@@ -30,3 +30,28 @@ QUnit.test('test-helper.js', function(assert) {
   assert.ok(true, 'test-helper.js should pass ESLint\n\n');
 });
 
+QUnit.test('unit/routes/about-test.js', function(assert) {
+  assert.expect(1);
+  assert.ok(true, 'unit/routes/about-test.js should pass ESLint\n\n');
+});
+
+QUnit.test('unit/routes/contact-test.js', function(assert) {
+  assert.expect(1);
+  assert.ok(true, 'unit/routes/contact-test.js should pass ESLint\n\n');
+});
+
+QUnit.test('unit/routes/graph-test.js', function(assert) {
+  assert.expect(1);
+  assert.ok(true, 'unit/routes/graph-test.js should pass ESLint\n\n');
+});
+
+QUnit.test('unit/routes/index-test.js', function(assert) {
+  assert.expect(1);
+  assert.ok(true, 'unit/routes/index-test.js should pass ESLint\n\n');
+});
+
+QUnit.test('unit/routes/sensors-test.js', function(assert) {
+  assert.expect(1);
+  assert.ok(true, 'unit/routes/sensors-test.js should pass ESLint\n\n');
+});
+
