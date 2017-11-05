@@ -1,0 +1,162 @@
+'use strict';
+
+define('vv-dio-web/tests/acceptance/list-sensors-test', ['qunit', 'vv-dio-web/tests/helpers/module-for-acceptance'], function (_qunit, _moduleForAcceptance) {
+  'use strict';
+
+  (0, _moduleForAcceptance.default)('Acceptance | list sensors');
+
+  (0, _qunit.test)('should show sensor displays on the home page', function (assert) {});
+
+  (0, _qunit.test)('should link to information about the company', function (assert) {});
+
+  (0, _qunit.test)('should link to contact information', function (assert) {});
+
+  (0, _qunit.test)('should link to the graph of sensor data', function (assert) {});
+
+  (0, _qunit.test)('should show details for the selected sensor', function (assert) {});
+});
+define('vv-dio-web/tests/app.lint-test', [], function () {
+  'use strict';
+
+  QUnit.module('ESLint | app');
+
+  QUnit.test('app.js', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'app.js should pass ESLint\n\n');
+  });
+
+  QUnit.test('resolver.js', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'resolver.js should pass ESLint\n\n');
+  });
+
+  QUnit.test('router.js', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'router.js should pass ESLint\n\n');
+  });
+});
+define('vv-dio-web/tests/helpers/destroy-app', ['exports'], function (exports) {
+  'use strict';
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  exports.default = destroyApp;
+  var run = Ember.run;
+  function destroyApp(application) {
+    run(application, 'destroy');
+  }
+});
+define('vv-dio-web/tests/helpers/module-for-acceptance', ['exports', 'qunit', 'vv-dio-web/tests/helpers/start-app', 'vv-dio-web/tests/helpers/destroy-app'], function (exports, _qunit, _startApp, _destroyApp) {
+  'use strict';
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+
+  exports.default = function (name) {
+    var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+
+    (0, _qunit.module)(name, {
+      beforeEach: function beforeEach() {
+        this.application = (0, _startApp.default)();
+
+        if (options.beforeEach) {
+          return options.beforeEach.apply(this, arguments);
+        }
+      },
+      afterEach: function afterEach() {
+        var _this = this;
+
+        var afterEach = options.afterEach && options.afterEach.apply(this, arguments);
+        return resolve(afterEach).then(function () {
+          return (0, _destroyApp.default)(_this.application);
+        });
+      }
+    });
+  };
+
+  var resolve = Ember.RSVP.resolve;
+});
+define('vv-dio-web/tests/helpers/resolver', ['exports', 'vv-dio-web/resolver', 'vv-dio-web/config/environment'], function (exports, _resolver, _environment) {
+  'use strict';
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+
+
+  var resolver = _resolver.default.create();
+
+  resolver.namespace = {
+    modulePrefix: _environment.default.modulePrefix,
+    podModulePrefix: _environment.default.podModulePrefix
+  };
+
+  exports.default = resolver;
+});
+define('vv-dio-web/tests/helpers/start-app', ['exports', 'vv-dio-web/app', 'vv-dio-web/config/environment'], function (exports, _app, _environment) {
+  'use strict';
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  exports.default = startApp;
+  var merge = Ember.merge;
+  var run = Ember.run;
+  function startApp(attrs) {
+    var attributes = merge({}, _environment.default.APP);
+    attributes = merge(attributes, attrs); // use defaults, but you can override;
+
+    return run(function () {
+      var application = _app.default.create(attributes);
+      application.setupForTesting();
+      application.injectTestHelpers();
+      return application;
+    });
+  }
+});
+define('vv-dio-web/tests/test-helper', ['vv-dio-web/tests/helpers/resolver', 'ember-qunit', 'ember-cli-qunit'], function (_resolver, _emberQunit, _emberCliQunit) {
+  'use strict';
+
+  (0, _emberQunit.setResolver)(_resolver.default);
+  (0, _emberCliQunit.start)();
+});
+define('vv-dio-web/tests/tests.lint-test', [], function () {
+  'use strict';
+
+  QUnit.module('ESLint | tests');
+
+  QUnit.test('acceptance/list-sensors-test.js', function (assert) {
+    assert.expect(1);
+    assert.ok(false, 'acceptance/list-sensors-test.js should pass ESLint\n\n6:64 - \'assert\' is defined but never used. (no-unused-vars)\n10:64 - \'assert\' is defined but never used. (no-unused-vars)\n14:54 - \'assert\' is defined but never used. (no-unused-vars)\n18:59 - \'assert\' is defined but never used. (no-unused-vars)\n22:63 - \'assert\' is defined but never used. (no-unused-vars)');
+  });
+
+  QUnit.test('helpers/destroy-app.js', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'helpers/destroy-app.js should pass ESLint\n\n');
+  });
+
+  QUnit.test('helpers/module-for-acceptance.js', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'helpers/module-for-acceptance.js should pass ESLint\n\n');
+  });
+
+  QUnit.test('helpers/resolver.js', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'helpers/resolver.js should pass ESLint\n\n');
+  });
+
+  QUnit.test('helpers/start-app.js', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'helpers/start-app.js should pass ESLint\n\n');
+  });
+
+  QUnit.test('test-helper.js', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'test-helper.js should pass ESLint\n\n');
+  });
+});
+require('vv-dio-web/tests/test-helper');
+EmberENV.TESTS_FILE_LOADED = true;
+//# sourceMappingURL=tests.map
