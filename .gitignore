@@ -58,20 +58,6 @@ jspm_packages/
 # dotenv environment variables file
 .env
 
-© 2017 GitHub, Inc.
-Terms
-Privacy
-Security
-Status
-Help
-Contact GitHub
-API
-Training
-Shop
-Blog
-About
-# See https://help.github.com/ignore-files/ for more about ignoring files.
-
 # dependencies
 /node_modules
 
@@ -122,4 +108,3 @@ bower_components/
 npm-debug.log
 .ember-cli
 DEBUG/
-/tmp
