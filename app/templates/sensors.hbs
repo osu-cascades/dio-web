@@ -3,16 +3,6 @@
   <p>LIST O' SENSORS</p>
 </div>
 
-{{#each model as |sensor| }}
-  <div class="flex">
-    <article class="sensor-card">
-      <h3>{{ sensor.name }}</h3>
-      <div class="detail owner">
-        <span>reading: {{ sensor.reading }}</span>
-      </div>
-      <div class="detail location">
-        location: {{ sensor.location }}
-      </div>
-    </article>
-  </div>
+{{#each model as |sensorUnit| }}
+  {{sensor-display sensor=sensorUnit}}
 {{/each}}
