@@ -36,7 +36,7 @@ test('should link to the graph of sensor data', function (assert) {
     assert.equal(currentURL(), '/graph', 'should navigate to graph');
   });
 });
-
-test('should show details for the selected sensor', function (assert) {
-
-});
+//
+// test('should show details for the selected sensor', function (assert) {
+//
+// });
