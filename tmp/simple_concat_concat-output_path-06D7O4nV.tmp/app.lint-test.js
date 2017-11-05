@@ -15,3 +15,8 @@ QUnit.test('router.js', function(assert) {
   assert.ok(true, 'router.js should pass ESLint\n\n');
 });
 
+QUnit.test('routes/graph.js', function(assert) {
+  assert.expect(1);
+  assert.ok(true, 'routes/graph.js should pass ESLint\n\n');
+});
+

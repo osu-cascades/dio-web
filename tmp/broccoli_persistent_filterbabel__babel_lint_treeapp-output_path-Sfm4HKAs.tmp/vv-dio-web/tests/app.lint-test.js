@@ -17,4 +17,9 @@ define('vv-dio-web/tests/app.lint-test', [], function () {
     assert.expect(1);
     assert.ok(true, 'router.js should pass ESLint\n\n');
   });
+
+  QUnit.test('routes/graph.js', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'routes/graph.js should pass ESLint\n\n');
+  });
 });

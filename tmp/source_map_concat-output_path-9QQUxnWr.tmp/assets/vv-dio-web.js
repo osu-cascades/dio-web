@@ -247,9 +247,24 @@ define('vv-dio-web/router', ['exports', 'vv-dio-web/config/environment'], functi
     rootURL: _environment.default.rootURL
   });
 
-  Router.map(function () {});
+  Router.map(function () {
+    this.route('graph');
+  });
 
   exports.default = Router;
+});
+define('vv-dio-web/routes/graph', ['exports'], function (exports) {
+  'use strict';
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  var Route = Ember.Route;
+  exports.default = Route.extend({
+    model: function model() {
+      return ['DERP', 'DERP2', 'DERP3'];
+    }
+  });
 });
 define('vv-dio-web/services/ajax', ['exports', 'ember-ajax/services/ajax'], function (exports, _ajax) {
   'use strict';
@@ -271,6 +286,14 @@ define("vv-dio-web/templates/application", ["exports"], function (exports) {
     value: true
   });
   exports.default = Ember.HTMLBars.template({ "id": "SH/4UVbb", "block": "{\"symbols\":[],\"statements\":[[6,\"h1\"],[7],[0,\"Hello World\"],[8],[0,\"\\n\\n\"],[1,[18,\"outlet\"],false]],\"hasEval\":false}", "meta": { "moduleName": "vv-dio-web/templates/application.hbs" } });
+});
+define("vv-dio-web/templates/graph", ["exports"], function (exports) {
+  "use strict";
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  exports.default = Ember.HTMLBars.template({ "id": "bjXmLHqc", "block": "{\"symbols\":[\"derp\"],\"statements\":[[6,\"h2\"],[7],[0,\"Insert graph here...\"],[8],[0,\"\\n\\n\"],[6,\"ul\"],[7],[0,\"\\n\"],[4,\"each\",[[20,[\"model\"]]],null,{\"statements\":[[0,\"    \"],[6,\"li\"],[7],[1,[19,1,[]],false],[8],[0,\"\\n\"]],\"parameters\":[1]},null],[8],[0,\"\\n\\n\"],[1,[18,\"outlet\"],false]],\"hasEval\":false}", "meta": { "moduleName": "vv-dio-web/templates/graph.hbs" } });
 });
 
 

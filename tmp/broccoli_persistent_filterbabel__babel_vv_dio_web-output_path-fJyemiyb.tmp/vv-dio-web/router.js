@@ -12,7 +12,9 @@ define('vv-dio-web/router', ['exports', 'vv-dio-web/config/environment'], functi
     rootURL: _environment.default.rootURL
   });
 
-  Router.map(function () {});
+  Router.map(function () {
+    this.route('graph');
+  });
 
   exports.default = Router;
 });
