@@ -122,3 +122,4 @@ bower_components/
 npm-debug.log
 .ember-cli
 DEBUG/
+/tmp
