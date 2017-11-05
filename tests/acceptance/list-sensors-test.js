@@ -8,6 +8,9 @@ test('should show sensor displays on the home page', function (assert) {
   andThen(function () {
     assert.equal(currentURL(), '/sensors', 'should redirect automatically')
   });
+  andThen(function () {
+    assert.equal(find('.sensor-card').length, 2, 'should see two sensors');
+  });
 });
 
 test('should link to information about the company', function (assert) {
