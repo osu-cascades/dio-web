@@ -2306,6 +2306,6 @@ catch(err) {
 });
 
 if (!runningTests) {
-  require("vv-dio-web/app")["default"].create({"name":"vv-dio-web","version":"0.0.0+e23ae90f"});
+  require("vv-dio-web/app")["default"].create({"name":"vv-dio-web","version":"0.0.0+384d1325"});
 }
 //# sourceMappingURL=vv-dio-web.map
