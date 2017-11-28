@@ -35,14 +35,14 @@ QUnit.test('test-helper.js', function(assert) {
   assert.ok(true, 'test-helper.js should pass ESLint\n\n');
 });
 
-QUnit.test('unit/adapters/application-test.js', function(assert) {
+QUnit.test('unit/adapters/reading-test.js', function(assert) {
   assert.expect(1);
-  assert.ok(true, 'unit/adapters/application-test.js should pass ESLint\n\n');
+  assert.ok(true, 'unit/adapters/reading-test.js should pass ESLint\n\n');
 });
 
-QUnit.test('unit/controllers/application-test.js', function(assert) {
+QUnit.test('unit/adapters/sensor-test.js', function(assert) {
   assert.expect(1);
-  assert.ok(true, 'unit/controllers/application-test.js should pass ESLint\n\n');
+  assert.ok(true, 'unit/adapters/sensor-test.js should pass ESLint\n\n');
 });
 
 QUnit.test('unit/models/reading-test.js', function(assert) {
@@ -70,13 +70,13 @@ QUnit.test('unit/routes/index-test.js', function(assert) {
   assert.ok(true, 'unit/routes/index-test.js should pass ESLint\n\n');
 });
 
-QUnit.test('unit/routes/sensors-test.js', function(assert) {
+QUnit.test('unit/routes/readings-test.js', function(assert) {
   assert.expect(1);
-  assert.ok(true, 'unit/routes/sensors-test.js should pass ESLint\n\n');
+  assert.ok(true, 'unit/routes/readings-test.js should pass ESLint\n\n');
 });
 
-QUnit.test('unit/serializers/application-test.js', function(assert) {
+QUnit.test('unit/serializers/reading-test.js', function(assert) {
   assert.expect(1);
-  assert.ok(true, 'unit/serializers/application-test.js should pass ESLint\n\n');
+  assert.ok(true, 'unit/serializers/reading-test.js should pass ESLint\n\n');
 });
 

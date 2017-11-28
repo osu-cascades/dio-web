@@ -48,9 +48,14 @@ define('vv-dio-web/tests/app.lint-test', [], function () {
 
   QUnit.module('ESLint | app');
 
-  QUnit.test('adapters/application.js', function (assert) {
+  QUnit.test('adapters/reading.js', function (assert) {
     assert.expect(1);
-    assert.ok(true, 'adapters/application.js should pass ESLint\n\n');
+    assert.ok(true, 'adapters/reading.js should pass ESLint\n\n');
+  });
+
+  QUnit.test('adapters/sensor.js', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'adapters/sensor.js should pass ESLint\n\n');
   });
 
   QUnit.test('app.js', function (assert) {
@@ -61,11 +66,6 @@ define('vv-dio-web/tests/app.lint-test', [], function () {
   QUnit.test('components/sensor-display.js', function (assert) {
     assert.expect(1);
     assert.ok(true, 'components/sensor-display.js should pass ESLint\n\n');
-  });
-
-  QUnit.test('controllers/application.js', function (assert) {
-    assert.expect(1);
-    assert.ok(false, 'controllers/application.js should pass ESLint\n\n7:16 - \'reading\' is defined but never used. (no-unused-vars)');
   });
 
   QUnit.test('models/reading.js', function (assert) {
@@ -103,14 +103,14 @@ define('vv-dio-web/tests/app.lint-test', [], function () {
     assert.ok(true, 'routes/index.js should pass ESLint\n\n');
   });
 
-  QUnit.test('routes/sensors.js', function (assert) {
+  QUnit.test('routes/readings.js', function (assert) {
     assert.expect(1);
-    assert.ok(true, 'routes/sensors.js should pass ESLint\n\n');
+    assert.ok(true, 'routes/readings.js should pass ESLint\n\n');
   });
 
-  QUnit.test('serializers/application.js', function (assert) {
+  QUnit.test('serializers/reading.js', function (assert) {
     assert.expect(1);
-    assert.ok(true, 'serializers/application.js should pass ESLint\n\n');
+    assert.ok(true, 'serializers/reading.js should pass ESLint\n\n');
   });
 });
 define('vv-dio-web/tests/helpers/destroy-app', ['exports'], function (exports) {
@@ -365,14 +365,14 @@ define('vv-dio-web/tests/tests.lint-test', [], function () {
     assert.ok(true, 'test-helper.js should pass ESLint\n\n');
   });
 
-  QUnit.test('unit/adapters/application-test.js', function (assert) {
+  QUnit.test('unit/adapters/reading-test.js', function (assert) {
     assert.expect(1);
-    assert.ok(true, 'unit/adapters/application-test.js should pass ESLint\n\n');
+    assert.ok(true, 'unit/adapters/reading-test.js should pass ESLint\n\n');
   });
 
-  QUnit.test('unit/controllers/application-test.js', function (assert) {
+  QUnit.test('unit/adapters/sensor-test.js', function (assert) {
     assert.expect(1);
-    assert.ok(true, 'unit/controllers/application-test.js should pass ESLint\n\n');
+    assert.ok(true, 'unit/adapters/sensor-test.js should pass ESLint\n\n');
   });
 
   QUnit.test('unit/models/reading-test.js', function (assert) {
@@ -400,20 +400,20 @@ define('vv-dio-web/tests/tests.lint-test', [], function () {
     assert.ok(true, 'unit/routes/index-test.js should pass ESLint\n\n');
   });
 
-  QUnit.test('unit/routes/sensors-test.js', function (assert) {
+  QUnit.test('unit/routes/readings-test.js', function (assert) {
     assert.expect(1);
-    assert.ok(true, 'unit/routes/sensors-test.js should pass ESLint\n\n');
+    assert.ok(true, 'unit/routes/readings-test.js should pass ESLint\n\n');
   });
 
-  QUnit.test('unit/serializers/application-test.js', function (assert) {
+  QUnit.test('unit/serializers/reading-test.js', function (assert) {
     assert.expect(1);
-    assert.ok(true, 'unit/serializers/application-test.js should pass ESLint\n\n');
+    assert.ok(true, 'unit/serializers/reading-test.js should pass ESLint\n\n');
   });
 });
-define('vv-dio-web/tests/unit/adapters/application-test', ['ember-qunit'], function (_emberQunit) {
+define('vv-dio-web/tests/unit/adapters/reading-test', ['ember-qunit'], function (_emberQunit) {
   'use strict';
 
-  (0, _emberQunit.moduleFor)('adapter:application', 'Unit | Adapter | application', {
+  (0, _emberQunit.moduleFor)('adapter:reading', 'Unit | Adapter | reading', {
     // Specify the other units that are required for this test.
     // needs: ['serializer:foo']
   });
@@ -424,18 +424,18 @@ define('vv-dio-web/tests/unit/adapters/application-test', ['ember-qunit'], funct
     assert.ok(adapter);
   });
 });
-define('vv-dio-web/tests/unit/controllers/application-test', ['ember-qunit'], function (_emberQunit) {
+define('vv-dio-web/tests/unit/adapters/sensor-test', ['ember-qunit'], function (_emberQunit) {
   'use strict';
 
-  (0, _emberQunit.moduleFor)('controller:application', 'Unit | Controller | application', {
+  (0, _emberQunit.moduleFor)('adapter:sensor', 'Unit | Adapter | sensor', {
     // Specify the other units that are required for this test.
-    // needs: ['controller:foo']
+    // needs: ['serializer:foo']
   });
 
   // Replace this with your real tests.
   (0, _emberQunit.test)('it exists', function (assert) {
-    var controller = this.subject();
-    assert.ok(controller);
+    var adapter = this.subject();
+    assert.ok(adapter);
   });
 });
 define('vv-dio-web/tests/unit/models/reading-test', ['ember-qunit'], function (_emberQunit) {
@@ -504,10 +504,10 @@ define('vv-dio-web/tests/unit/routes/index-test', ['ember-qunit'], function (_em
     assert.ok(route);
   });
 });
-define('vv-dio-web/tests/unit/routes/sensors-test', ['ember-qunit'], function (_emberQunit) {
+define('vv-dio-web/tests/unit/routes/readings-test', ['ember-qunit'], function (_emberQunit) {
   'use strict';
 
-  (0, _emberQunit.moduleFor)('route:sensors', 'Unit | Route | sensors', {
+  (0, _emberQunit.moduleFor)('route:readings', 'Unit | Route | readings', {
     // Specify the other units that are required for this test.
     // needs: ['controller:foo']
   });
@@ -517,12 +517,12 @@ define('vv-dio-web/tests/unit/routes/sensors-test', ['ember-qunit'], function (_
     assert.ok(route);
   });
 });
-define('vv-dio-web/tests/unit/serializers/application-test', ['ember-qunit'], function (_emberQunit) {
+define('vv-dio-web/tests/unit/serializers/reading-test', ['ember-qunit'], function (_emberQunit) {
   'use strict';
 
-  (0, _emberQunit.moduleForModel)('application', 'Unit | Serializer | application', {
+  (0, _emberQunit.moduleForModel)('reading', 'Unit | Serializer | reading', {
     // Specify the other units that are required for this test.
-    needs: ['serializer:application']
+    needs: ['serializer:reading']
   });
 
   // Replace this with your real tests.

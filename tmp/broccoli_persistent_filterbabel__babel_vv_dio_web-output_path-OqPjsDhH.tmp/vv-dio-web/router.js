@@ -15,8 +15,8 @@ define('vv-dio-web/router', ['exports', 'vv-dio-web/config/environment'], functi
   Router.map(function () {
     this.route('about');
     this.route('contact');
-    this.route('sensors');
     this.route('graph');
+    this.route('readings');
   });
 
   exports.default = Router;

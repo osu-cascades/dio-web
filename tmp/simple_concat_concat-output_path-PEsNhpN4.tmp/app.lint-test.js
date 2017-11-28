@@ -1,8 +1,13 @@
 QUnit.module('ESLint | app');
 
-QUnit.test('adapters/application.js', function(assert) {
+QUnit.test('adapters/reading.js', function(assert) {
   assert.expect(1);
-  assert.ok(true, 'adapters/application.js should pass ESLint\n\n');
+  assert.ok(true, 'adapters/reading.js should pass ESLint\n\n');
+});
+
+QUnit.test('adapters/sensor.js', function(assert) {
+  assert.expect(1);
+  assert.ok(true, 'adapters/sensor.js should pass ESLint\n\n');
 });
 
 QUnit.test('app.js', function(assert) {
@@ -13,11 +18,6 @@ QUnit.test('app.js', function(assert) {
 QUnit.test('components/sensor-display.js', function(assert) {
   assert.expect(1);
   assert.ok(true, 'components/sensor-display.js should pass ESLint\n\n');
-});
-
-QUnit.test('controllers/application.js', function(assert) {
-  assert.expect(1);
-  assert.ok(false, 'controllers/application.js should pass ESLint\n\n7:16 - \'reading\' is defined but never used. (no-unused-vars)');
 });
 
 QUnit.test('models/reading.js', function(assert) {
@@ -55,13 +55,13 @@ QUnit.test('routes/index.js', function(assert) {
   assert.ok(true, 'routes/index.js should pass ESLint\n\n');
 });
 
-QUnit.test('routes/sensors.js', function(assert) {
+QUnit.test('routes/readings.js', function(assert) {
   assert.expect(1);
-  assert.ok(true, 'routes/sensors.js should pass ESLint\n\n');
+  assert.ok(true, 'routes/readings.js should pass ESLint\n\n');
 });
 
-QUnit.test('serializers/application.js', function(assert) {
+QUnit.test('serializers/reading.js', function(assert) {
   assert.expect(1);
-  assert.ok(true, 'serializers/application.js should pass ESLint\n\n');
+  assert.ok(true, 'serializers/reading.js should pass ESLint\n\n');
 });
 

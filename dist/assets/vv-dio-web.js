@@ -2,7 +2,7 @@
 
 
 
-define('vv-dio-web/adapters/application', ['exports', 'ember-data'], function (exports, _emberData) {
+define('vv-dio-web/adapters/reading', ['exports', 'ember-data'], function (exports, _emberData) {
   'use strict';
 
   Object.defineProperty(exports, "__esModule", {
@@ -10,7 +10,22 @@ define('vv-dio-web/adapters/application', ['exports', 'ember-data'], function (e
   });
   exports.default = _emberData.default.JSONAPIAdapter.extend({
     host: 'http://localhost:3000',
-    namespace: 'api/v1/do'
+    namespace: 'api/v1/do',
+
+    pathForType: function pathForType() {
+      return 'readings';
+    }
+  });
+});
+define('vv-dio-web/adapters/sensor', ['exports', 'ember-data'], function (exports, _emberData) {
+  'use strict';
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  exports.default = _emberData.default.JSONAPIAdapter.extend({
+    host: 'localhost:3000',
+    namespace: 'api/v1/'
   });
 });
 define('vv-dio-web/app', ['exports', 'vv-dio-web/resolver', 'ember-load-initializers', 'vv-dio-web/config/environment'], function (exports, _resolver, _emberLoadInitializers, _environment) {
@@ -1186,21 +1201,6 @@ define('vv-dio-web/components/welcome-page', ['exports', 'ember-welcome-page/com
     }
   });
 });
-define('vv-dio-web/controllers/application', ['exports'], function (exports) {
-  'use strict';
-
-  Object.defineProperty(exports, "__esModule", {
-    value: true
-  });
-  var Controller = Ember.Controller;
-  exports.default = Controller.extend({
-    actions: {
-      getLastReading: function getLastReading() {
-        this.store.find('reading').then(function (reading) {});
-      }
-    }
-  });
-});
 define('vv-dio-web/helpers/-paper-underscore', ['exports', 'ember-paper/helpers/underscore'], function (exports, _underscore) {
   'use strict';
 
@@ -1797,7 +1797,7 @@ define('vv-dio-web/models/reading', ['exports', 'ember-data'], function (exports
   exports.default = _emberData.default.Model.extend({
     reading: _emberData.default.attr('string'),
     location: _emberData.default.attr('string'),
-    createdAt: _emberData.default.attr()
+    createdAt: _emberData.default.attr('date')
   });
 });
 define('vv-dio-web/resolver', ['exports', 'ember-resolver'], function (exports, _emberResolver) {
@@ -1825,8 +1825,8 @@ define('vv-dio-web/router', ['exports', 'vv-dio-web/config/environment'], functi
   Router.map(function () {
     this.route('about');
     this.route('contact');
-    this.route('sensors');
     this.route('graph');
+    this.route('readings');
   });
 
   exports.default = Router;
@@ -1867,11 +1867,11 @@ define('vv-dio-web/routes/index', ['exports'], function (exports) {
   var Route = Ember.Route;
   exports.default = Route.extend({
     beforeModel: function beforeModel() {
-      this.replaceWith('sensors');
+      this.replaceWith('readings');
     }
   });
 });
-define('vv-dio-web/routes/sensors', ['exports'], function (exports) {
+define('vv-dio-web/routes/readings', ['exports'], function (exports) {
   'use strict';
 
   Object.defineProperty(exports, "__esModule", {
@@ -1884,13 +1884,20 @@ define('vv-dio-web/routes/sensors', ['exports'], function (exports) {
     }
   });
 });
-define('vv-dio-web/serializers/application', ['exports', 'ember-data'], function (exports, _emberData) {
+define('vv-dio-web/serializers/reading', ['exports', 'ember-data'], function (exports, _emberData) {
   'use strict';
 
   Object.defineProperty(exports, "__esModule", {
     value: true
   });
-  exports.default = _emberData.default.JSONAPISerializer.extend({});
+  exports.default = _emberData.default.RESTSerializer.extend({
+    normalizeResponse: function normalizeResponse(store, primaryModelClass, payload, id, requestType) {
+
+      payload = { readings: payload };
+
+      return this._super(store, primaryModelClass, payload, id, requestType);
+    }
+  });
 });
 define('vv-dio-web/services/ajax', ['exports', 'ember-ajax/services/ajax'], function (exports, _ajax) {
   'use strict';
@@ -2299,13 +2306,13 @@ define("vv-dio-web/templates/index", ["exports"], function (exports) {
   });
   exports.default = Ember.HTMLBars.template({ "id": "Gp7VSV9j", "block": "{\"symbols\":[],\"statements\":[[1,[18,\"outlet\"],false]],\"hasEval\":false}", "meta": { "moduleName": "vv-dio-web/templates/index.hbs" } });
 });
-define("vv-dio-web/templates/sensors", ["exports"], function (exports) {
+define("vv-dio-web/templates/readings", ["exports"], function (exports) {
   "use strict";
 
   Object.defineProperty(exports, "__esModule", {
     value: true
   });
-  exports.default = Ember.HTMLBars.template({ "id": "LvsKu8Qz", "block": "{\"symbols\":[\"sensorUnit\"],\"statements\":[[6,\"div\"],[7],[0,\"\\n  \"],[6,\"h2\"],[7],[0,\"Sensors\"],[8],[0,\"\\n  \"],[6,\"p\"],[7],[0,\"LIST O' SENSORS\"],[8],[0,\"\\n\"],[8],[0,\"\\n\\n\"],[4,\"each\",[[20,[\"model\"]]],null,{\"statements\":[[0,\"  \"],[1,[25,\"sensor-display\",null,[[\"sensor\"],[[19,1,[]]]]],false],[0,\"\\n\"]],\"parameters\":[1]},null]],\"hasEval\":false}", "meta": { "moduleName": "vv-dio-web/templates/sensors.hbs" } });
+  exports.default = Ember.HTMLBars.template({ "id": "jfkunE/u", "block": "{\"symbols\":[\"reading\"],\"statements\":[[6,\"h3\"],[7],[0,\"Readings\"],[8],[0,\"\\n\\n\"],[1,[18,\"outlet\"],false],[0,\"\\n\\n\"],[4,\"paper-list\",null,null,{\"statements\":[[4,\"each\",[[20,[\"model\"]]],null,{\"statements\":[[4,\"paper-item\",null,[[\"class\"],[\"md-3-line\"]],{\"statements\":[[0,\"      \"],[6,\"div\"],[9,\"class\",\"md-list-item-text\"],[7],[0,\"\\n        \"],[6,\"h3\"],[7],[0,\"Reading: \"],[1,[19,1,[\"reading\"]],false],[8],[0,\"\\n        \"],[6,\"p\"],[7],[0,\"Location: \"],[1,[19,1,[\"location\"]],false],[0,\", Time: \"],[1,[19,1,[\"createdAt\"]],false],[8],[0,\"\\n      \"],[8],[0,\"\\n\"]],\"parameters\":[]},null],[0,\"    \"],[1,[18,\"paper-divider\"],false],[0,\"\\n\"]],\"parameters\":[1]},null]],\"parameters\":[]},null]],\"hasEval\":false}", "meta": { "moduleName": "vv-dio-web/templates/readings.hbs" } });
 });
 define('vv-dio-web/utils/clamp', ['exports', 'ember-paper/utils/clamp'], function (exports, _clamp) {
   'use strict';

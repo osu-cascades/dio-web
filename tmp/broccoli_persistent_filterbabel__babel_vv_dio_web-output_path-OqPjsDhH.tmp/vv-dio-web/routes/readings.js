@@ -1,4 +1,4 @@
-define('vv-dio-web/routes/index', ['exports'], function (exports) {
+define('vv-dio-web/routes/readings', ['exports'], function (exports) {
   'use strict';
 
   Object.defineProperty(exports, "__esModule", {
@@ -6,8 +6,8 @@ define('vv-dio-web/routes/index', ['exports'], function (exports) {
   });
   var Route = Ember.Route;
   exports.default = Route.extend({
-    beforeModel: function beforeModel() {
-      this.replaceWith('readings');
+    model: function model() {
+      return this.store.findAll('reading');
     }
   });
 });
