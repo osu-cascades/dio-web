@@ -1,0 +1,6 @@
+{
+  "name": "vv-dio-web",
+  "dependencies": {
+    "chartjs": "2.1.6"
+  }
+}
