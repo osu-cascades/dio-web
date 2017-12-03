@@ -33,5 +33,11 @@ export default Controller.extend({
           data: this.get('readingData')
         }]
       }
+    }),
+
+  lastReading:
+    Ember.computed('readingData', function() {
+      let readings = this.get('readingData');
+      return _.slice(readings, readings.length - 1, readings.length);
     })
 });

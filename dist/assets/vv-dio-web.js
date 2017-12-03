@@ -1170,6 +1170,15 @@ define('vv-dio-web/components/readings-graph', ['exports'], function (exports) {
   var Component = Ember.Component;
   exports.default = Component.extend({});
 });
+define('vv-dio-web/components/sensor-detail', ['exports'], function (exports) {
+  'use strict';
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  var Component = Ember.Component;
+  exports.default = Component.extend({});
+});
 define('vv-dio-web/components/transition-group', ['exports', 'ember-css-transitions/components/transition-group'], function (exports, _transitionGroup) {
   'use strict';
 
@@ -1243,6 +1252,11 @@ define('vv-dio-web/controllers/readings', ['exports', 'lodash', 'moment'], funct
           data: this.get('readingData')
         }]
       };
+    }),
+
+    lastReading: Ember.computed('readingData', function () {
+      var readings = this.get('readingData');
+      return _lodash.default.slice(readings, readings.length - 1, readings.length);
     })
   });
 });
@@ -2613,7 +2627,15 @@ define("vv-dio-web/templates/components/readings-graph", ["exports"], function (
   Object.defineProperty(exports, "__esModule", {
     value: true
   });
-  exports.default = Ember.HTMLBars.template({ "id": "NV8Uf/vm", "block": "{\"symbols\":[],\"statements\":[[1,[25,\"ember-chart\",null,[[\"type\",\"data\"],[\"line\",[20,[\"chart\"]]]]],false]],\"hasEval\":false}", "meta": { "moduleName": "vv-dio-web/templates/components/readings-graph.hbs" } });
+  exports.default = Ember.HTMLBars.template({ "id": "UYa1Uz4t", "block": "{\"symbols\":[\"card\",\"title\",\"text\"],\"statements\":[[4,\"paper-card\",null,null,{\"statements\":[[0,\"\\n\"],[4,\"component\",[[19,1,[\"title\"]]],null,{\"statements\":[[4,\"component\",[[19,2,[\"text\"]]],null,{\"statements\":[[0,\"      \"],[4,\"component\",[[19,3,[\"headline\"]]],null,{\"statements\":[[0,\"Last 100 Readings\"]],\"parameters\":[]},null],[0,\"\\n\"]],\"parameters\":[3]},null]],\"parameters\":[2]},null],[0,\"\\n\"],[4,\"component\",[[19,1,[\"content\"]]],[[\"class\"],[\"layout-column\"]],{\"statements\":[[0,\"    \"],[1,[25,\"ember-chart\",null,[[\"type\",\"data\"],[\"line\",[20,[\"chart\"]]]]],false],[0,\"\\n\"]],\"parameters\":[]},null],[0,\"\\n\"]],\"parameters\":[1]},null]],\"hasEval\":false}", "meta": { "moduleName": "vv-dio-web/templates/components/readings-graph.hbs" } });
+});
+define("vv-dio-web/templates/components/sensor-detail", ["exports"], function (exports) {
+  "use strict";
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  exports.default = Ember.HTMLBars.template({ "id": "J163Tksq", "block": "{\"symbols\":[\"card\",\"title\",\"text\"],\"statements\":[[4,\"paper-card\",null,null,{\"statements\":[[0,\"\\n\"],[4,\"component\",[[19,1,[\"title\"]]],null,{\"statements\":[[4,\"component\",[[19,2,[\"text\"]]],null,{\"statements\":[[0,\"      \"],[4,\"component\",[[19,3,[\"headline\"]]],null,{\"statements\":[[0,\"Most Recent Reading\"]],\"parameters\":[]},null],[0,\"\\n\"]],\"parameters\":[3]},null]],\"parameters\":[2]},null],[0,\"\\n\"],[4,\"component\",[[19,1,[\"content\"]]],null,{\"statements\":[[0,\"    \"],[6,\"div\"],[9,\"class\",\"sensor-reading\"],[7],[1,[18,\"detail\"],false],[8],[0,\"\\n\"]],\"parameters\":[]},null],[0,\"\\n\"]],\"parameters\":[1]},null]],\"hasEval\":false}", "meta": { "moduleName": "vv-dio-web/templates/components/sensor-detail.hbs" } });
 });
 define("vv-dio-web/templates/components/transition-group", ["exports"], function (exports) {
   "use strict";
@@ -2653,7 +2675,7 @@ define("vv-dio-web/templates/readings", ["exports"], function (exports) {
   Object.defineProperty(exports, "__esModule", {
     value: true
   });
-  exports.default = Ember.HTMLBars.template({ "id": "o0anPCkh", "block": "{\"symbols\":[\"card\",\"title\",\"text\"],\"statements\":[[4,\"paper-card\",null,null,{\"statements\":[[0,\"\\n\"],[4,\"component\",[[19,1,[\"title\"]]],null,{\"statements\":[[4,\"component\",[[19,2,[\"text\"]]],null,{\"statements\":[[0,\"      \"],[4,\"component\",[[19,3,[\"headline\"]]],null,{\"statements\":[[0,\"Last 100 Readings\"]],\"parameters\":[]},null],[0,\"\\n\"]],\"parameters\":[3]},null]],\"parameters\":[2]},null],[0,\"\\n\"],[4,\"component\",[[19,1,[\"content\"]]],[[\"class\"],[\"layout-column\"]],{\"statements\":[[0,\"    \"],[1,[25,\"readings-graph\",null,[[\"chart\"],[[20,[\"readingConfig\"]]]]],false],[0,\"\\n\"]],\"parameters\":[]},null],[0,\"\\n\"]],\"parameters\":[1]},null],[0,\"\\n\\n\"]],\"hasEval\":false}", "meta": { "moduleName": "vv-dio-web/templates/readings.hbs" } });
+  exports.default = Ember.HTMLBars.template({ "id": "vbCv8V8W", "block": "{\"symbols\":[],\"statements\":[[6,\"div\"],[9,\"class\",\"layout-row layout-align-center-center\"],[7],[0,\"\\n    \"],[6,\"h1\"],[7],[0,\"Sensor Dashboard\"],[8],[0,\"\\n\"],[8],[0,\"\\n\\n\"],[6,\"div\"],[9,\"class\",\"layout-row flex\"],[7],[0,\"\\n  \"],[6,\"div\"],[9,\"class\",\"layout-column flex-33\"],[7],[0,\"\\n    \"],[1,[25,\"sensor-detail\",null,[[\"detail\"],[[20,[\"lastReading\"]]]]],false],[0,\"\\n  \"],[8],[0,\"\\n\\n  \"],[6,\"div\"],[9,\"class\",\"layout-column flex-66\"],[7],[0,\"\\n    \"],[1,[25,\"readings-graph\",null,[[\"chart\"],[[20,[\"readingConfig\"]]]]],false],[0,\"\\n  \"],[8],[0,\"\\n\"],[8],[0,\"\\n\\n\\n\"]],\"hasEval\":false}", "meta": { "moduleName": "vv-dio-web/templates/readings.hbs" } });
 });
 define('vv-dio-web/utils/clamp', ['exports', 'ember-paper/utils/clamp'], function (exports, _clamp) {
   'use strict';

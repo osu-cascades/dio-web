@@ -19766,3 +19766,6 @@ md-fab-speed-dial {
 .md-virtual-repeat-container.md-autocomplete-suggestions-container {
   height: 225.5px;
   max-height: 225.5px; }
+
+.sensor-reading {
+  font-size: 2em; }

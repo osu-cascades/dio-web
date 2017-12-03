@@ -68,6 +68,11 @@ define('vv-dio-web/tests/app.lint-test', [], function () {
     assert.ok(true, 'components/readings-graph.js should pass ESLint\n\n');
   });
 
+  QUnit.test('components/sensor-detail.js', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'components/sensor-detail.js should pass ESLint\n\n');
+  });
+
   QUnit.test('controllers/readings.js', function (assert) {
     assert.expect(1);
     assert.ok(true, 'controllers/readings.js should pass ESLint\n\n');
@@ -325,6 +330,35 @@ define('vv-dio-web/tests/integration/components/readings-graph-test', ['ember-qu
     assert.equal(this.$().text().trim(), 'template block text');
   });
 });
+define('vv-dio-web/tests/integration/components/sensor-detail-test', ['ember-qunit'], function (_emberQunit) {
+  'use strict';
+
+  (0, _emberQunit.moduleForComponent)('sensor-detail', 'Integration | Component | sensor detail', {
+    integration: true
+  });
+
+  (0, _emberQunit.test)('it renders', function (assert) {
+    // Set any properties with this.set('myProperty', 'value');
+    // Handle any actions with this.on('myAction', function(val) { ... });
+
+    this.render(Ember.HTMLBars.template({
+      "id": "+DyyX6gl",
+      "block": "{\"symbols\":[],\"statements\":[[1,[18,\"sensor-detail\"],false]],\"hasEval\":false}",
+      "meta": {}
+    }));
+
+    assert.equal(this.$().text().trim(), '');
+
+    // Template block usage:
+    this.render(Ember.HTMLBars.template({
+      "id": "qQNY46UX",
+      "block": "{\"symbols\":[],\"statements\":[[0,\"\\n\"],[4,\"sensor-detail\",null,null,{\"statements\":[[0,\"      template block text\\n\"]],\"parameters\":[]},null],[0,\"  \"]],\"hasEval\":false}",
+      "meta": {}
+    }));
+
+    assert.equal(this.$().text().trim(), 'template block text');
+  });
+});
 define('vv-dio-web/tests/test-helper', ['vv-dio-web/tests/helpers/resolver', 'ember-qunit', 'ember-cli-qunit'], function (_resolver, _emberQunit, _emberCliQunit) {
   'use strict';
 
@@ -364,6 +398,11 @@ define('vv-dio-web/tests/tests.lint-test', [], function () {
   QUnit.test('integration/components/readings-graph-test.js', function (assert) {
     assert.expect(1);
     assert.ok(true, 'integration/components/readings-graph-test.js should pass ESLint\n\n');
+  });
+
+  QUnit.test('integration/components/sensor-detail-test.js', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'integration/components/sensor-detail-test.js should pass ESLint\n\n');
   });
 
   QUnit.test('test-helper.js', function (assert) {

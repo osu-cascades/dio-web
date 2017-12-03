@@ -1,0 +1,13 @@
+{{#paper-card as |card|}}
+
+  {{#card.title as |title|}}
+    {{#title.text as |text|}}
+      {{#text.headline}}Most Recent Reading{{/text.headline}}
+    {{/title.text}}
+  {{/card.title}}
+
+  {{#card.content}}
+    <div class="sensor-reading">{{detail}}</div>
+  {{/card.content}}
+
+{{/paper-card}}
