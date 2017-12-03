@@ -1217,6 +1217,11 @@ define('vv-dio-web/controllers/readings', ['exports', 'lodash', 'moment'], funct
   });
   var Controller = Ember.Controller;
   exports.default = Controller.extend({
+    readingData: Ember.computed('model', function () {
+      var allReadings = this.get('model').mapBy('reading');
+      return _lodash.default.slice(allReadings, allReadings.length - 300, allReadings.length);
+    }),
+
     readingLabels: Ember.computed('model', function () {
       var labels = [];
       var dateTimes = this.get('model').mapBy('createdAt');
@@ -1224,11 +1229,8 @@ define('vv-dio-web/controllers/readings', ['exports', 'lodash', 'moment'], funct
       _lodash.default.each(dateTimes, function (date) {
         labels.push((0, _moment.default)(date).format('HH:mm:ss a'));
       });
-      return labels;
-    }),
 
-    readingData: Ember.computed('model', function () {
-      return this.get('model').mapBy('reading');
+      return _lodash.default.slice(labels, labels.length - 300, labels.length);
     }),
 
     readingChart: Ember.computed('model', 'readingLabels', function () {
@@ -1236,12 +1238,8 @@ define('vv-dio-web/controllers/readings', ['exports', 'lodash', 'moment'], funct
         labels: this.get('readingLabels'),
         datasets: [{
           label: 'Dissolved Oxygen',
-          fillColor: 'rgba(199,45,45,0.2)',
-          strokeColor: 'rgba(199,45,45,1)',
-          pointColor: 'rgba(199,45,45,1)',
-          pointStrokeColor: '#fff',
-          pointHighlightFill: '#fff',
-          pointHighlightStroke: 'rgba(199,45,45,1)',
+          borderColor: 'rgba(199,45,45,0.6)',
+          backgroundColor: 'rgba(199,45,45,0.2)',
           data: this.get('readingData')
         }]
       };

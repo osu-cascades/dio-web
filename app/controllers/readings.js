@@ -4,6 +4,12 @@ import _ from 'lodash';
 import moment from 'moment';
 
 export default Controller.extend({
+  readingData:
+    Ember.computed('model', function(){
+      let allReadings = this.get('model').mapBy('reading');
+      return _.slice(allReadings, allReadings.length - 300, allReadings.length)
+    }),
+
   readingLabels:
     Ember.computed('model', function(){
       let labels = [];
@@ -12,12 +18,8 @@ export default Controller.extend({
       _.each(dateTimes, function(date){
         labels.push(moment(date).format('HH:mm:ss a'));
       });
-      return labels;
-    }),
 
-  readingData:
-    Ember.computed('model', function(){
-      return this.get('model').mapBy('reading');
+      return _.slice(labels, labels.length - 300, labels.length);
     }),
 
   readingChart:
@@ -26,12 +28,8 @@ export default Controller.extend({
         labels: this.get('readingLabels'),
         datasets: [{
           label: 'Dissolved Oxygen',
-          fillColor: 'rgba(199,45,45,0.2)',
-          strokeColor: 'rgba(199,45,45,1)',
-          pointColor: 'rgba(199,45,45,1)',
-          pointStrokeColor: '#fff',
-          pointHighlightFill: '#fff',
-          pointHighlightStroke: 'rgba(199,45,45,1)',
+          borderColor: 'rgba(199,45,45,0.6)',
+          backgroundColor: 'rgba(199,45,45,0.2)',
           data: this.get('readingData')
         }]
       }
