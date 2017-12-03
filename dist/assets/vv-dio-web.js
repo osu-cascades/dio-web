@@ -1229,12 +1229,12 @@ define('vv-dio-web/controllers/readings', ['exports', 'lodash', 'moment'], funct
     }),
 
     readingData: Ember.computed('readings', function () {
-      return _lodash.default.map(undefined.get('readings'), 'reading');
+      return _lodash.default.map(this.get('readings'), 'reading');
     }),
 
-    readingChart: Ember.computed('readingLabels', 'readingData', function () {
+    readingChart: Ember.computed('model', function () {
       return {
-        labels: ['Dec 01, 2017', 'Dec 02, 2017', 'Dec 03, 2017', 'Dec 04, 2017', 'Dec 05, 2017'], //this.get('readingLabels'),
+        labels: this.get('model').mapBy('createdAt'), //this.get('readingLabels'),
         datasets: [{
           label: 'Dissolved Oxygen',
           fillColor: 'rgba(199,45,45,0.2)',
@@ -1243,7 +1243,7 @@ define('vv-dio-web/controllers/readings', ['exports', 'lodash', 'moment'], funct
           pointStrokeColor: '#fff',
           pointHighlightFill: '#fff',
           pointHighlightStroke: 'rgba(199,45,45,1)',
-          data: [15.85, 15.86, 15.87, 15.86, 15.55] //this.get('readingData')
+          data: this.get('model').mapBy('reading') //this.get('readingData')
         }]
       };
     })

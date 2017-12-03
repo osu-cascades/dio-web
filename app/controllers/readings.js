@@ -5,7 +5,7 @@ import moment from 'moment';
 
 export default Controller.extend({
   readingLabels:
-    Ember.computed('model', function() {
+    Ember.computed('model', function(){
       let labels = [];
 
       _.each(this.get('model.content'), (reading) => {
@@ -17,14 +17,14 @@ export default Controller.extend({
     }),
 
   readingData:
-    Ember.computed('readings', () => {
+    Ember.computed('readings', function(){
       return _.map(this.get('readings'), 'reading');
     }),
 
   readingChart:
-    Ember.computed('readingLabels', 'readingData', () => {
+    Ember.computed('model', function() {
       return {
-        labels: ['Dec 01, 2017', 'Dec 02, 2017', 'Dec 03, 2017', 'Dec 04, 2017', 'Dec 05, 2017'],             //this.get('readingLabels'),
+        labels: this.get('model').mapBy('createdAt'),             //this.get('readingLabels'),
         datasets: [{
           label: 'Dissolved Oxygen',
           fillColor: 'rgba(199,45,45,0.2)',
@@ -33,7 +33,7 @@ export default Controller.extend({
           pointStrokeColor: '#fff',
           pointHighlightFill: '#fff',
           pointHighlightStroke: 'rgba(199,45,45,1)',
-          data: [15.85, 15.86, 15.87, 15.86, 15.55]              //this.get('readingData')
+          data: this.get('model').mapBy('reading')         //this.get('readingData')
         }]
       }
     })
