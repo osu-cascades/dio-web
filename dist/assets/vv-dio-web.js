@@ -99,6 +99,14 @@ define('vv-dio-web/components/basic-dropdown/trigger', ['exports', 'ember-basic-
     }
   });
 });
+define('vv-dio-web/components/ember-chart', ['exports', 'ember-cli-chart/components/ember-chart'], function (exports, _emberChart) {
+  'use strict';
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  exports.default = _emberChart.default;
+});
 define('vv-dio-web/components/ember-wormhole', ['exports', 'ember-wormhole/components/ember-wormhole'], function (exports, _emberWormhole) {
   'use strict';
 
@@ -1153,7 +1161,16 @@ define('vv-dio-web/components/power-select/trigger', ['exports', 'ember-power-se
     }
   });
 });
-define('vv-dio-web/components/sensor-display', ['exports'], function (exports) {
+define('vv-dio-web/components/readings-graph', ['exports'], function (exports) {
+  'use strict';
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  var Component = Ember.Component;
+  exports.default = Component.extend({});
+});
+define('vv-dio-web/components/sensor-detail', ['exports'], function (exports) {
   'use strict';
 
   Object.defineProperty(exports, "__esModule", {
@@ -1201,7 +1218,7 @@ define('vv-dio-web/components/welcome-page', ['exports', 'ember-welcome-page/com
     }
   });
 });
-define('vv-dio-web/controllers/readings', ['exports'], function (exports) {
+define('vv-dio-web/controllers/readings', ['exports', 'lodash', 'moment'], function (exports, _lodash, _moment) {
   'use strict';
 
   Object.defineProperty(exports, "__esModule", {
@@ -1210,13 +1227,36 @@ define('vv-dio-web/controllers/readings', ['exports'], function (exports) {
   var Controller = Ember.Controller;
   exports.default = Controller.extend({
     readingData: Ember.computed('model', function () {
+      var allReadings = this.get('model').mapBy('reading');
+      return _lodash.default.slice(allReadings, allReadings.length - 300, allReadings.length);
+    }),
+
+    readingLabels: Ember.computed('model', function () {
+      var labels = [];
+      var dateTimes = this.get('model').mapBy('createdAt');
+
+      _lodash.default.each(dateTimes, function (date) {
+        labels.push((0, _moment.default)(date).format('HH:mm:ss a'));
+      });
+
+      return _lodash.default.slice(labels, labels.length - 300, labels.length);
+    }),
+
+    readingConfig: Ember.computed('model', 'readingLabels', function () {
       return {
-        labels: ['One', 'Two'],
+        labels: this.get('readingLabels'),
         datasets: [{
           label: 'Dissolved Oxygen',
-          data: [5, 6]
+          borderColor: 'rgba(199,45,45,0.6)',
+          backgroundColor: 'rgba(199,45,45,0.2)',
+          data: this.get('readingData')
         }]
       };
+    }),
+
+    lastReading: Ember.computed('readingData', function () {
+      var readings = this.get('readingData');
+      return _lodash.default.slice(readings, readings.length - 1, readings.length);
     })
   });
 });
@@ -1418,6 +1458,19 @@ define('vv-dio-web/helpers/gte', ['exports', 'ember-truth-helpers/helpers/gte'],
     }
   });
 });
+define('vv-dio-web/helpers/is-after', ['exports', 'ember-moment/helpers/is-after'], function (exports, _isAfter) {
+  'use strict';
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function () {
+      return _isAfter.default;
+    }
+  });
+});
 define('vv-dio-web/helpers/is-array', ['exports', 'ember-truth-helpers/helpers/is-array'], function (exports, _isArray) {
   'use strict';
 
@@ -1437,6 +1490,32 @@ define('vv-dio-web/helpers/is-array', ['exports', 'ember-truth-helpers/helpers/i
     }
   });
 });
+define('vv-dio-web/helpers/is-before', ['exports', 'ember-moment/helpers/is-before'], function (exports, _isBefore) {
+  'use strict';
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function () {
+      return _isBefore.default;
+    }
+  });
+});
+define('vv-dio-web/helpers/is-between', ['exports', 'ember-moment/helpers/is-between'], function (exports, _isBetween) {
+  'use strict';
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function () {
+      return _isBetween.default;
+    }
+  });
+});
 define('vv-dio-web/helpers/is-equal', ['exports', 'ember-truth-helpers/helpers/is-equal'], function (exports, _isEqual) {
   'use strict';
 
@@ -1453,6 +1532,45 @@ define('vv-dio-web/helpers/is-equal', ['exports', 'ember-truth-helpers/helpers/i
     enumerable: true,
     get: function () {
       return _isEqual.isEqual;
+    }
+  });
+});
+define('vv-dio-web/helpers/is-same-or-after', ['exports', 'ember-moment/helpers/is-same-or-after'], function (exports, _isSameOrAfter) {
+  'use strict';
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function () {
+      return _isSameOrAfter.default;
+    }
+  });
+});
+define('vv-dio-web/helpers/is-same-or-before', ['exports', 'ember-moment/helpers/is-same-or-before'], function (exports, _isSameOrBefore) {
+  'use strict';
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function () {
+      return _isSameOrBefore.default;
+    }
+  });
+});
+define('vv-dio-web/helpers/is-same', ['exports', 'ember-moment/helpers/is-same'], function (exports, _isSame) {
+  'use strict';
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function () {
+      return _isSame.default;
     }
   });
 });
@@ -1494,6 +1612,181 @@ define('vv-dio-web/helpers/lte', ['exports', 'ember-truth-helpers/helpers/lte'],
     }
   });
 });
+define('vv-dio-web/helpers/moment-add', ['exports', 'ember-moment/helpers/moment-add'], function (exports, _momentAdd) {
+  'use strict';
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function () {
+      return _momentAdd.default;
+    }
+  });
+});
+define('vv-dio-web/helpers/moment-calendar', ['exports', 'ember-moment/helpers/moment-calendar'], function (exports, _momentCalendar) {
+  'use strict';
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function () {
+      return _momentCalendar.default;
+    }
+  });
+});
+define('vv-dio-web/helpers/moment-diff', ['exports', 'ember-moment/helpers/moment-diff'], function (exports, _momentDiff) {
+  'use strict';
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function () {
+      return _momentDiff.default;
+    }
+  });
+});
+define('vv-dio-web/helpers/moment-duration', ['exports', 'ember-moment/helpers/moment-duration'], function (exports, _momentDuration) {
+  'use strict';
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function () {
+      return _momentDuration.default;
+    }
+  });
+});
+define('vv-dio-web/helpers/moment-format', ['exports', 'ember-moment/helpers/moment-format'], function (exports, _momentFormat) {
+  'use strict';
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function () {
+      return _momentFormat.default;
+    }
+  });
+});
+define('vv-dio-web/helpers/moment-from-now', ['exports', 'ember-moment/helpers/moment-from-now'], function (exports, _momentFromNow) {
+  'use strict';
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function () {
+      return _momentFromNow.default;
+    }
+  });
+});
+define('vv-dio-web/helpers/moment-from', ['exports', 'ember-moment/helpers/moment-from'], function (exports, _momentFrom) {
+  'use strict';
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function () {
+      return _momentFrom.default;
+    }
+  });
+});
+define('vv-dio-web/helpers/moment-subtract', ['exports', 'ember-moment/helpers/moment-subtract'], function (exports, _momentSubtract) {
+  'use strict';
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function () {
+      return _momentSubtract.default;
+    }
+  });
+});
+define('vv-dio-web/helpers/moment-to-date', ['exports', 'ember-moment/helpers/moment-to-date'], function (exports, _momentToDate) {
+  'use strict';
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function () {
+      return _momentToDate.default;
+    }
+  });
+});
+define('vv-dio-web/helpers/moment-to-now', ['exports', 'ember-moment/helpers/moment-to-now'], function (exports, _momentToNow) {
+  'use strict';
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function () {
+      return _momentToNow.default;
+    }
+  });
+});
+define('vv-dio-web/helpers/moment-to', ['exports', 'ember-moment/helpers/moment-to'], function (exports, _momentTo) {
+  'use strict';
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function () {
+      return _momentTo.default;
+    }
+  });
+});
+define('vv-dio-web/helpers/moment-unix', ['exports', 'ember-moment/helpers/unix'], function (exports, _unix) {
+  'use strict';
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function () {
+      return _unix.default;
+    }
+  });
+  Object.defineProperty(exports, 'unix', {
+    enumerable: true,
+    get: function () {
+      return _unix.unix;
+    }
+  });
+});
+define('vv-dio-web/helpers/moment', ['exports', 'ember-moment/helpers/moment'], function (exports, _moment) {
+  'use strict';
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function () {
+      return _moment.default;
+    }
+  });
+});
 define('vv-dio-web/helpers/not-eq', ['exports', 'ember-truth-helpers/helpers/not-equal'], function (exports, _notEqual) {
   'use strict';
 
@@ -1529,6 +1822,19 @@ define('vv-dio-web/helpers/not', ['exports', 'ember-truth-helpers/helpers/not'],
     enumerable: true,
     get: function () {
       return _not.not;
+    }
+  });
+});
+define('vv-dio-web/helpers/now', ['exports', 'ember-moment/helpers/now'], function (exports, _now) {
+  'use strict';
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function () {
+      return _now.default;
     }
   });
 });
@@ -1612,6 +1918,25 @@ define('vv-dio-web/helpers/task', ['exports'], function (exports) {
   }
 
   exports.default = Ember.Helper.helper(taskHelper);
+});
+define('vv-dio-web/helpers/unix', ['exports', 'ember-moment/helpers/unix'], function (exports, _unix) {
+  'use strict';
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function () {
+      return _unix.default;
+    }
+  });
+  Object.defineProperty(exports, 'unix', {
+    enumerable: true,
+    get: function () {
+      return _unix.unix;
+    }
+  });
 });
 define('vv-dio-web/helpers/xor', ['exports', 'ember-truth-helpers/helpers/xor'], function (exports, _xor) {
   'use strict';
@@ -2002,6 +2327,17 @@ define('vv-dio-web/services/constants', ['exports'], function (exports) {
     MEDIA_PRIORITY: ['xl', 'gt-lg', 'lg', 'gt-md', 'md', 'gt-sm', 'sm', 'gt-xs', 'xs', 'print']
   });
 });
+define('vv-dio-web/services/moment', ['exports', 'ember-moment/services/moment', 'vv-dio-web/config/environment'], function (exports, _moment, _environment) {
+  'use strict';
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  var get = Ember.get;
+  exports.default = _moment.default.extend({
+    defaultFormat: get(_environment.default, 'moment.outputFormat')
+  });
+});
 define('vv-dio-web/services/paper-sidenav', ['exports', 'ember-paper/services/paper-sidenav'], function (exports, _paperSidenav) {
   'use strict';
 
@@ -2285,13 +2621,21 @@ define("vv-dio-web/templates/application", ["exports"], function (exports) {
   });
   exports.default = Ember.HTMLBars.template({ "id": "x9Z595JT", "block": "{\"symbols\":[],\"statements\":[[4,\"paper-toolbar\",null,null,{\"statements\":[[4,\"paper-toolbar-tools\",null,null,{\"statements\":[[0,\"\\n    \"],[4,\"link-to\",[\"index\"],null,{\"statements\":[[6,\"h2\"],[7],[0,\"DiO\"],[8]],\"parameters\":[]},null],[0,\"\\n\\n    \"],[6,\"span\"],[9,\"class\",\"flex\"],[7],[8],[0,\"\\n    \"],[4,\"link-to\",[\"graph\"],null,{\"statements\":[[4,\"paper-button\",null,null,{\"statements\":[[0,\"Graph\"]],\"parameters\":[]},null]],\"parameters\":[]},null],[0,\"\\n    \"],[4,\"link-to\",[\"about\"],null,{\"statements\":[[4,\"paper-button\",null,null,{\"statements\":[[0,\"About\"]],\"parameters\":[]},null]],\"parameters\":[]},null],[0,\"\\n    \"],[4,\"link-to\",[\"contact\"],null,{\"statements\":[[4,\"paper-button\",null,null,{\"statements\":[[0,\"Contact\"]],\"parameters\":[]},null]],\"parameters\":[]},null],[0,\"\\n\\n\"]],\"parameters\":[]},null]],\"parameters\":[]},null],[0,\"\\n\"],[4,\"paper-content\",null,[[\"flex-layout\",\"flex\"],[\"column\",true]],{\"statements\":[[0,\"    \"],[1,[18,\"outlet\"],false],[0,\"\\n\"]],\"parameters\":[]},null]],\"hasEval\":false}", "meta": { "moduleName": "vv-dio-web/templates/application.hbs" } });
 });
-define("vv-dio-web/templates/components/sensor-display", ["exports"], function (exports) {
+define("vv-dio-web/templates/components/readings-graph", ["exports"], function (exports) {
   "use strict";
 
   Object.defineProperty(exports, "__esModule", {
     value: true
   });
-  exports.default = Ember.HTMLBars.template({ "id": "KpZcpW4I", "block": "{\"symbols\":[],\"statements\":[[6,\"div\"],[9,\"class\",\"flex\"],[7],[0,\"\\n  \"],[6,\"article\"],[9,\"class\",\"sensor-card\"],[7],[0,\"\\n    \"],[6,\"h3\"],[7],[1,[20,[\"sensor\",\"name\"]],false],[8],[0,\"\\n    \"],[6,\"div\"],[9,\"class\",\"reading\"],[7],[0,\"\\n      \"],[6,\"span\"],[7],[0,\"reading:\"],[8],[0,\" \"],[1,[20,[\"sensor\",\"reading\"]],false],[0,\"\\n    \"],[8],[0,\"\\n    \"],[6,\"div\"],[9,\"class\",\"location\"],[7],[0,\"\\n      \"],[6,\"span\"],[7],[0,\"location:\"],[8],[0,\" \"],[1,[20,[\"sensor\",\"location\"]],false],[0,\"\\n    \"],[8],[0,\"\\n  \"],[8],[0,\"\\n\"],[8]],\"hasEval\":false}", "meta": { "moduleName": "vv-dio-web/templates/components/sensor-display.hbs" } });
+  exports.default = Ember.HTMLBars.template({ "id": "UYa1Uz4t", "block": "{\"symbols\":[\"card\",\"title\",\"text\"],\"statements\":[[4,\"paper-card\",null,null,{\"statements\":[[0,\"\\n\"],[4,\"component\",[[19,1,[\"title\"]]],null,{\"statements\":[[4,\"component\",[[19,2,[\"text\"]]],null,{\"statements\":[[0,\"      \"],[4,\"component\",[[19,3,[\"headline\"]]],null,{\"statements\":[[0,\"Last 100 Readings\"]],\"parameters\":[]},null],[0,\"\\n\"]],\"parameters\":[3]},null]],\"parameters\":[2]},null],[0,\"\\n\"],[4,\"component\",[[19,1,[\"content\"]]],[[\"class\"],[\"layout-column\"]],{\"statements\":[[0,\"    \"],[1,[25,\"ember-chart\",null,[[\"type\",\"data\"],[\"line\",[20,[\"chart\"]]]]],false],[0,\"\\n\"]],\"parameters\":[]},null],[0,\"\\n\"]],\"parameters\":[1]},null]],\"hasEval\":false}", "meta": { "moduleName": "vv-dio-web/templates/components/readings-graph.hbs" } });
+});
+define("vv-dio-web/templates/components/sensor-detail", ["exports"], function (exports) {
+  "use strict";
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  exports.default = Ember.HTMLBars.template({ "id": "SLGPhdXO", "block": "{\"symbols\":[\"card\",\"title\",\"text\"],\"statements\":[[4,\"paper-card\",null,null,{\"statements\":[[0,\"\\n\"],[4,\"component\",[[19,1,[\"title\"]]],null,{\"statements\":[[4,\"component\",[[19,2,[\"text\"]]],null,{\"statements\":[[0,\"      \"],[4,\"component\",[[19,3,[\"headline\"]]],null,{\"statements\":[[0,\"Most Recent Reading\"]],\"parameters\":[]},null],[0,\"\\n\"]],\"parameters\":[3]},null]],\"parameters\":[2]},null],[0,\"\\n\"],[4,\"component\",[[19,1,[\"content\"]]],null,{\"statements\":[[0,\"    \"],[6,\"div\"],[7],[6,\"span\"],[9,\"class\",\"sensor-reading\"],[7],[1,[18,\"detail\"],false],[8],[0,\" ppm\"],[8],[0,\"\\n\"]],\"parameters\":[]},null],[0,\"\\n\"]],\"parameters\":[1]},null]],\"hasEval\":false}", "meta": { "moduleName": "vv-dio-web/templates/components/sensor-detail.hbs" } });
 });
 define("vv-dio-web/templates/components/transition-group", ["exports"], function (exports) {
   "use strict";
@@ -2331,7 +2675,7 @@ define("vv-dio-web/templates/readings", ["exports"], function (exports) {
   Object.defineProperty(exports, "__esModule", {
     value: true
   });
-  exports.default = Ember.HTMLBars.template({ "id": "jfkunE/u", "block": "{\"symbols\":[\"reading\"],\"statements\":[[6,\"h3\"],[7],[0,\"Readings\"],[8],[0,\"\\n\\n\"],[1,[18,\"outlet\"],false],[0,\"\\n\\n\"],[4,\"paper-list\",null,null,{\"statements\":[[4,\"each\",[[20,[\"model\"]]],null,{\"statements\":[[4,\"paper-item\",null,[[\"class\"],[\"md-3-line\"]],{\"statements\":[[0,\"      \"],[6,\"div\"],[9,\"class\",\"md-list-item-text\"],[7],[0,\"\\n        \"],[6,\"h3\"],[7],[0,\"Reading: \"],[1,[19,1,[\"reading\"]],false],[8],[0,\"\\n        \"],[6,\"p\"],[7],[0,\"Location: \"],[1,[19,1,[\"location\"]],false],[0,\", Time: \"],[1,[19,1,[\"createdAt\"]],false],[8],[0,\"\\n      \"],[8],[0,\"\\n\"]],\"parameters\":[]},null],[0,\"    \"],[1,[18,\"paper-divider\"],false],[0,\"\\n\"]],\"parameters\":[1]},null]],\"parameters\":[]},null]],\"hasEval\":false}", "meta": { "moduleName": "vv-dio-web/templates/readings.hbs" } });
+  exports.default = Ember.HTMLBars.template({ "id": "vbCv8V8W", "block": "{\"symbols\":[],\"statements\":[[6,\"div\"],[9,\"class\",\"layout-row layout-align-center-center\"],[7],[0,\"\\n    \"],[6,\"h1\"],[7],[0,\"Sensor Dashboard\"],[8],[0,\"\\n\"],[8],[0,\"\\n\\n\"],[6,\"div\"],[9,\"class\",\"layout-row flex\"],[7],[0,\"\\n  \"],[6,\"div\"],[9,\"class\",\"layout-column flex-33\"],[7],[0,\"\\n    \"],[1,[25,\"sensor-detail\",null,[[\"detail\"],[[20,[\"lastReading\"]]]]],false],[0,\"\\n  \"],[8],[0,\"\\n\\n  \"],[6,\"div\"],[9,\"class\",\"layout-column flex-66\"],[7],[0,\"\\n    \"],[1,[25,\"readings-graph\",null,[[\"chart\"],[[20,[\"readingConfig\"]]]]],false],[0,\"\\n  \"],[8],[0,\"\\n\"],[8],[0,\"\\n\\n\\n\"]],\"hasEval\":false}", "meta": { "moduleName": "vv-dio-web/templates/readings.hbs" } });
 });
 define('vv-dio-web/utils/clamp', ['exports', 'ember-paper/utils/clamp'], function (exports, _clamp) {
   'use strict';
@@ -2368,6 +2712,6 @@ catch(err) {
 });
 
 if (!runningTests) {
-  require("vv-dio-web/app")["default"].create({"name":"vv-dio-web","version":"0.0.0+ab6891dc"});
+  require("vv-dio-web/app")["default"].create({"name":"vv-dio-web","version":"0.0.0+a9130dac"});
 }
 //# sourceMappingURL=vv-dio-web.map

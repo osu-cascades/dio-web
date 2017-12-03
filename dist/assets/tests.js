@@ -63,9 +63,19 @@ define('vv-dio-web/tests/app.lint-test', [], function () {
     assert.ok(true, 'app.js should pass ESLint\n\n');
   });
 
-  QUnit.test('components/sensor-display.js', function (assert) {
+  QUnit.test('components/readings-graph.js', function (assert) {
     assert.expect(1);
-    assert.ok(true, 'components/sensor-display.js should pass ESLint\n\n');
+    assert.ok(true, 'components/readings-graph.js should pass ESLint\n\n');
+  });
+
+  QUnit.test('components/sensor-detail.js', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'components/sensor-detail.js should pass ESLint\n\n');
+  });
+
+  QUnit.test('controllers/readings.js', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'controllers/readings.js should pass ESLint\n\n');
   });
 
   QUnit.test('models/reading.js', function (assert) {
@@ -291,32 +301,62 @@ define('vv-dio-web/tests/helpers/start-app', ['exports', 'vv-dio-web/app', 'vv-d
     });
   }
 });
-define('vv-dio-web/tests/integration/components/sensor-display-test', ['ember-qunit'], function (_emberQunit) {
+define('vv-dio-web/tests/integration/components/readings-graph-test', ['ember-qunit'], function (_emberQunit) {
   'use strict';
 
-  var EmberObject = Ember.Object;
-
-
-  var sensor = EmberObject.create({
-    name: 'test-sensor',
-    reading: 23,
-    location: 'test-location'
-  });
-
-  (0, _emberQunit.moduleForComponent)('sensor-display', 'Integration | Component | sensor display', {
+  (0, _emberQunit.moduleForComponent)('readings-graph', 'Integration | Component | readings graph', {
     integration: true
   });
 
-  (0, _emberQunit.test)('should display sensor details', function (assert) {
-    this.set('sensorObj', sensor);
+  (0, _emberQunit.test)('it renders', function (assert) {
+    // Set any properties with this.set('myProperty', 'value');
+    // Handle any actions with this.on('myAction', function(val) { ... });
+
     this.render(Ember.HTMLBars.template({
-      "id": "LYsguBIX",
-      "block": "{\"symbols\":[],\"statements\":[[1,[25,\"sensor-display\",null,[[\"sensor\"],[[20,[\"sensorObj\"]]]]],false]],\"hasEval\":false}",
+      "id": "yjAOTxJ/",
+      "block": "{\"symbols\":[],\"statements\":[[1,[18,\"readings-graph\"],false]],\"hasEval\":false}",
       "meta": {}
     }));
-    assert.equal(this.$('.sensor-card h3').text(), 'test-sensor', 'Name: test-sensor');
-    assert.equal(this.$('.sensor-card .reading').text().trim(), 'reading: 23', 'Reading: 23');
-    assert.equal(this.$('.sensor-card .location').text().trim(), 'location: test-location', 'Location: test-location');
+
+    assert.equal(this.$().text().trim(), '');
+
+    // Template block usage:
+    this.render(Ember.HTMLBars.template({
+      "id": "gMzS0F7P",
+      "block": "{\"symbols\":[],\"statements\":[[0,\"\\n\"],[4,\"readings-graph\",null,null,{\"statements\":[[0,\"      template block text\\n\"]],\"parameters\":[]},null],[0,\"  \"]],\"hasEval\":false}",
+      "meta": {}
+    }));
+
+    assert.equal(this.$().text().trim(), 'template block text');
+  });
+});
+define('vv-dio-web/tests/integration/components/sensor-detail-test', ['ember-qunit'], function (_emberQunit) {
+  'use strict';
+
+  (0, _emberQunit.moduleForComponent)('sensor-detail', 'Integration | Component | sensor detail', {
+    integration: true
+  });
+
+  (0, _emberQunit.test)('it renders', function (assert) {
+    // Set any properties with this.set('myProperty', 'value');
+    // Handle any actions with this.on('myAction', function(val) { ... });
+
+    this.render(Ember.HTMLBars.template({
+      "id": "+DyyX6gl",
+      "block": "{\"symbols\":[],\"statements\":[[1,[18,\"sensor-detail\"],false]],\"hasEval\":false}",
+      "meta": {}
+    }));
+
+    assert.equal(this.$().text().trim(), '');
+
+    // Template block usage:
+    this.render(Ember.HTMLBars.template({
+      "id": "qQNY46UX",
+      "block": "{\"symbols\":[],\"statements\":[[0,\"\\n\"],[4,\"sensor-detail\",null,null,{\"statements\":[[0,\"      template block text\\n\"]],\"parameters\":[]},null],[0,\"  \"]],\"hasEval\":false}",
+      "meta": {}
+    }));
+
+    assert.equal(this.$().text().trim(), 'template block text');
   });
 });
 define('vv-dio-web/tests/test-helper', ['vv-dio-web/tests/helpers/resolver', 'ember-qunit', 'ember-cli-qunit'], function (_resolver, _emberQunit, _emberCliQunit) {
@@ -355,9 +395,14 @@ define('vv-dio-web/tests/tests.lint-test', [], function () {
     assert.ok(true, 'helpers/start-app.js should pass ESLint\n\n');
   });
 
-  QUnit.test('integration/components/sensor-display-test.js', function (assert) {
+  QUnit.test('integration/components/readings-graph-test.js', function (assert) {
     assert.expect(1);
-    assert.ok(true, 'integration/components/sensor-display-test.js should pass ESLint\n\n');
+    assert.ok(true, 'integration/components/readings-graph-test.js should pass ESLint\n\n');
+  });
+
+  QUnit.test('integration/components/sensor-detail-test.js', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'integration/components/sensor-detail-test.js should pass ESLint\n\n');
   });
 
   QUnit.test('test-helper.js', function (assert) {
@@ -373,6 +418,11 @@ define('vv-dio-web/tests/tests.lint-test', [], function () {
   QUnit.test('unit/adapters/sensor-test.js', function (assert) {
     assert.expect(1);
     assert.ok(true, 'unit/adapters/sensor-test.js should pass ESLint\n\n');
+  });
+
+  QUnit.test('unit/controllers/readings-test.js', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'unit/controllers/readings-test.js should pass ESLint\n\n');
   });
 
   QUnit.test('unit/models/reading-test.js', function (assert) {
@@ -436,6 +486,20 @@ define('vv-dio-web/tests/unit/adapters/sensor-test', ['ember-qunit'], function (
   (0, _emberQunit.test)('it exists', function (assert) {
     var adapter = this.subject();
     assert.ok(adapter);
+  });
+});
+define('vv-dio-web/tests/unit/controllers/readings-test', ['ember-qunit'], function (_emberQunit) {
+  'use strict';
+
+  (0, _emberQunit.moduleFor)('controller:readings', 'Unit | Controller | readings', {
+    // Specify the other units that are required for this test.
+    // needs: ['controller:foo']
+  });
+
+  // Replace this with your real tests.
+  (0, _emberQunit.test)('it exists', function (assert) {
+    var controller = this.subject();
+    assert.ok(controller);
   });
 });
 define('vv-dio-web/tests/unit/models/reading-test', ['ember-qunit'], function (_emberQunit) {
