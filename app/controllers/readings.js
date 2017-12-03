@@ -22,7 +22,7 @@ export default Controller.extend({
       return _.slice(labels, labels.length - 300, labels.length);
     }),
 
-  readingChart:
+  readingConfig:
     Ember.computed('model', 'readingLabels', function() {
       return {
         labels: this.get('readingLabels'),

@@ -1,9 +1,15 @@
-<h3>Readings</h3>
+{{#paper-card as |card|}}
 
-{{outlet}}
+  {{#card.title as |title|}}
+    {{#title.text as |text|}}
+      {{#text.headline}}Last 100 Readings{{/text.headline}}
+    {{/title.text}}
+  {{/card.title}}
 
-{{ readings-chart }}
+  {{#card.content class="layout-column"}}
+    {{ readings-graph chart=readingConfig }}
+  {{/card.content}}
+
+{{/paper-card}}
 
 
-
-{{ ember-chart type="line" data=readingChart options=readingOptions }}

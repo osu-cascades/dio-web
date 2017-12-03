@@ -1233,7 +1233,7 @@ define('vv-dio-web/controllers/readings', ['exports', 'lodash', 'moment'], funct
       return _lodash.default.slice(labels, labels.length - 300, labels.length);
     }),
 
-    readingChart: Ember.computed('model', 'readingLabels', function () {
+    readingConfig: Ember.computed('model', 'readingLabels', function () {
       return {
         labels: this.get('readingLabels'),
         datasets: [{
@@ -2613,7 +2613,7 @@ define("vv-dio-web/templates/components/readings-graph", ["exports"], function (
   Object.defineProperty(exports, "__esModule", {
     value: true
   });
-  exports.default = Ember.HTMLBars.template({ "id": "STkfwJ53", "block": "{\"symbols\":[],\"statements\":[[6,\"p\"],[7],[0,\"chart\"],[8],[0,\"\\n\\n\"],[1,[25,\"ember-chart\",null,[[\"type\",\"data\",\"options\"],[\"line\",[20,[\"readingChart\"]],[20,[\"readingOptions\"]]]]],false]],\"hasEval\":false}", "meta": { "moduleName": "vv-dio-web/templates/components/readings-graph.hbs" } });
+  exports.default = Ember.HTMLBars.template({ "id": "NV8Uf/vm", "block": "{\"symbols\":[],\"statements\":[[1,[25,\"ember-chart\",null,[[\"type\",\"data\"],[\"line\",[20,[\"chart\"]]]]],false]],\"hasEval\":false}", "meta": { "moduleName": "vv-dio-web/templates/components/readings-graph.hbs" } });
 });
 define("vv-dio-web/templates/components/transition-group", ["exports"], function (exports) {
   "use strict";
@@ -2653,7 +2653,7 @@ define("vv-dio-web/templates/readings", ["exports"], function (exports) {
   Object.defineProperty(exports, "__esModule", {
     value: true
   });
-  exports.default = Ember.HTMLBars.template({ "id": "PwcWMRBi", "block": "{\"symbols\":[],\"statements\":[[6,\"h3\"],[7],[0,\"Readings\"],[8],[0,\"\\n\\n\"],[1,[18,\"outlet\"],false],[0,\"\\n\\n\"],[1,[18,\"readings-chart\"],false],[0,\"\\n\\n\\n\\n\"],[1,[25,\"ember-chart\",null,[[\"type\",\"data\",\"options\"],[\"line\",[20,[\"readingChart\"]],[20,[\"readingOptions\"]]]]],false]],\"hasEval\":false}", "meta": { "moduleName": "vv-dio-web/templates/readings.hbs" } });
+  exports.default = Ember.HTMLBars.template({ "id": "o0anPCkh", "block": "{\"symbols\":[\"card\",\"title\",\"text\"],\"statements\":[[4,\"paper-card\",null,null,{\"statements\":[[0,\"\\n\"],[4,\"component\",[[19,1,[\"title\"]]],null,{\"statements\":[[4,\"component\",[[19,2,[\"text\"]]],null,{\"statements\":[[0,\"      \"],[4,\"component\",[[19,3,[\"headline\"]]],null,{\"statements\":[[0,\"Last 100 Readings\"]],\"parameters\":[]},null],[0,\"\\n\"]],\"parameters\":[3]},null]],\"parameters\":[2]},null],[0,\"\\n\"],[4,\"component\",[[19,1,[\"content\"]]],[[\"class\"],[\"layout-column\"]],{\"statements\":[[0,\"    \"],[1,[25,\"readings-graph\",null,[[\"chart\"],[[20,[\"readingConfig\"]]]]],false],[0,\"\\n\"]],\"parameters\":[]},null],[0,\"\\n\"]],\"parameters\":[1]},null],[0,\"\\n\\n\"]],\"hasEval\":false}", "meta": { "moduleName": "vv-dio-web/templates/readings.hbs" } });
 });
 define('vv-dio-web/utils/clamp', ['exports', 'ember-paper/utils/clamp'], function (exports, _clamp) {
   'use strict';
