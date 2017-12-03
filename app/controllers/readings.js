@@ -7,24 +7,23 @@ export default Controller.extend({
   readingLabels:
     Ember.computed('model', function(){
       let labels = [];
+      let dateTimes = this.get('model').mapBy('createdAt');
 
-      _.each(this.get('model.content'), (reading) => {
-        let dateLabel = moment(reading.createdAt).format('MMM Do, YYYY');
-        labels.push(dateLabel);
+      _.each(dateTimes, function(date){
+        labels.push(moment(date).format('HH:mm:ss a'));
       });
-
       return labels;
     }),
 
   readingData:
-    Ember.computed('readings', function(){
-      return _.map(this.get('readings'), 'reading');
+    Ember.computed('model', function(){
+      return this.get('model').mapBy('reading');
     }),
 
   readingChart:
-    Ember.computed('model', function() {
+    Ember.computed('model', 'readingLabels', function() {
       return {
-        labels: this.get('model').mapBy('createdAt'),             //this.get('readingLabels'),
+        labels: this.get('readingLabels'),
         datasets: [{
           label: 'Dissolved Oxygen',
           fillColor: 'rgba(199,45,45,0.2)',
@@ -33,7 +32,7 @@ export default Controller.extend({
           pointStrokeColor: '#fff',
           pointHighlightFill: '#fff',
           pointHighlightStroke: 'rgba(199,45,45,1)',
-          data: this.get('model').mapBy('reading')         //this.get('readingData')
+          data: this.get('readingData')
         }]
       }
     })
