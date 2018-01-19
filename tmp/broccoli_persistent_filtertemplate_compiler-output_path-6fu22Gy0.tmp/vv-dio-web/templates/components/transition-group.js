@@ -1,1 +1,0 @@
-export default Ember.HTMLBars.template({"id":"nx1YmzGI","block":"{\"symbols\":[\"&default\"],\"statements\":[[11,1],[0,\"\\n\"]],\"hasEval\":false}","meta":{"moduleName":"vv-dio-web/templates/components/transition-group.hbs"}});
