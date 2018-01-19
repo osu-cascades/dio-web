@@ -9,9 +9,6 @@ const routes: Routes = [
   },
   {
     path: 'graph', component: GraphComponent
-  },
-  {
-    path: '**', redirectTo: '/'
   }
 ];
 
