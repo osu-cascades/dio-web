@@ -10,6 +10,7 @@ import { SensorDetailComponent } from './sensor-detail/sensor-detail.component';
 import { HomeComponent } from './home/home.component';
 import {AppRoutingModule} from './app-routing.module';
 import { GraphComponent } from './graph/graph.component';
+import {ChartsModule} from 'ng2-charts';
 
 
 @NgModule({
@@ -29,7 +30,8 @@ import { GraphComponent } from './graph/graph.component';
     MatMenuModule,
     MatIconModule,
     MatButtonModule,
-    MatCardModule
+    MatCardModule,
+    ChartsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
