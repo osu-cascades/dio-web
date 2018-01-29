@@ -9,6 +9,7 @@ import {MatButtonModule, MatIconModule, MatMenuModule, MatToolbarModule} from '@
 import { SensorDetailComponent } from './sensor-detail/sensor-detail.component';
 import { HomeComponent } from './home/home.component';
 import {AppRoutingModule} from './app-routing.module';
+import { GraphComponent } from './graph/graph.component';
 
 
 @NgModule({
@@ -16,7 +17,8 @@ import {AppRoutingModule} from './app-routing.module';
     AppComponent,
     HeaderComponent,
     SensorDetailComponent,
-    HomeComponent
+    HomeComponent,
+    GraphComponent
   ],
   imports: [
     BrowserModule,
