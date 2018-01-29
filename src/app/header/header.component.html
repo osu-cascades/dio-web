@@ -1,0 +1,14 @@
+<mat-toolbar role="header" color="primary">
+  <span class="nav-heading">Volcano Veggies</span>
+  <span class="fill-row"></span>
+  <span>
+    <mat-menu #appMenu="matMenu">
+      <button mat-menu-item>About</button>
+      <button mat-menu-item>Contact</button>
+    </mat-menu>
+
+    <button mat-icon-button [matMenuTriggerFor]="appMenu" class="nav-heading">
+      <mat-icon>more_vert</mat-icon>
+    </button>
+  </span>
+</mat-toolbar>
