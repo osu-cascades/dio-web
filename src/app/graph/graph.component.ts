@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {ApiService} from '../services/api.service';
 
 @Component({
   selector: 'app-graph',
@@ -19,18 +20,11 @@ export class GraphComponent implements OnInit {
   public lineChartLegend = true;
   public lineChartType = 'line';
 
-  // events
-  public chartClicked(e: any): void {
-    console.log(e);
-  }
-
-  public chartHovered(e: any): void {
-    console.log(e);
-  }
-
-  constructor() { }
+  constructor(private client: ApiService) { }
 
   ngOnInit() {
+    this.client.getRecentSensorData()
+      .subscribe((readings) => console.log(readings));
   }
 
 }
