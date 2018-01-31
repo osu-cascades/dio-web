@@ -6,9 +6,10 @@
   </mat-card-header>
 
   <mat-card-content>
-    <p>Last reading: 12.9 <span style="font-size: .75em;">ppm</span></p>
-    <p>Date: January 28th, 2018</p>
-    <p>Time: 10:18pm</p>
-    <p>Location: Tank 1</p>
+    <div *ngIf="isDataReady">
+      <p>Last reading: {{lastReading?.reading}} <span style="font-size: .75em;">ppm</span></p>
+      <p>Date: {{lastReading?.createdAt | date:medium }}</p>
+      <p>Location: {{lastReading?.location}}</p>
+    </div>
   </mat-card-content>
 </mat-card>
