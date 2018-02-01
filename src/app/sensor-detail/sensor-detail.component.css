@@ -1,3 +1,7 @@
-.border {
-  border: crimson 1px solid;
+.content {
+  margin: 0 8px;
+}
+
+.mat-large {
+  font-size: 1.25em;
 }

@@ -1,15 +1,16 @@
-<mat-card>
+<mat-card *ngIf="isDataReady">
   <mat-card-header>
-    <mat-card-title>
-      <h3>Dissolved Oxygen Sensor</h3>
+    <mat-card-title class="mat-large">{{ lastReading?.reading }}&nbsp;<span class="mat-small">ppm</span>
     </mat-card-title>
+    <mat-card-subtitle>
+      Dissolved Oxygen Sensor
+    </mat-card-subtitle>
   </mat-card-header>
 
   <mat-card-content>
-    <div *ngIf="isDataReady">
-      <p>Last reading: {{lastReading?.reading}} <span style="font-size: .75em;">ppm</span></p>
-      <p>Date: {{lastReading?.createdAt | date:medium }}</p>
-      <p>Location: {{lastReading?.location}}</p>
+    <div class="content">
+      <p><span class="mat-large">Date: </span>{{lastReading?.createdAt | date:'medium'}}</p>
+      <p><span class="mat-large">Location: </span>{{lastReading?.location}}</p>
     </div>
   </mat-card-content>
 </mat-card>

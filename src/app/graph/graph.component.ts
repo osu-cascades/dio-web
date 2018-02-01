@@ -41,7 +41,7 @@ export class GraphComponent implements OnInit {
     const data = [];
     const labels = [];
     _.forEach(this.recentReadings, (reading) => {
-      reading.createdAt = moment(reading.createdAt).format('h:mma');
+      reading.createdAt = moment(reading.createdAt).format('h:mm:ssa');
       labels.push(reading.createdAt);
       data.push(reading.reading);
     });

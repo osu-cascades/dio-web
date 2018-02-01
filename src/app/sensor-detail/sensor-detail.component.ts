@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Reading} from '../graph/graph.component';
 import {ApiService} from '../services/api.service';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-sensor-detail',
