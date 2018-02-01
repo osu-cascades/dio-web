@@ -9,11 +9,11 @@ export class ApiService implements OnInit {
   }
 
   getRecentSensorReadings() {
-    return this.http.get<Reading[]>('http://localhost:3000/api/v1/do/readings/recent');
+    return this.http.get<Reading[]>('https://vv-dio-service-staging.herokuapp.com/api/v1/do/readings/recent');
   }
 
   getLastSensorReading() {
-    return this.http.get<Reading>('http://localhost:3000/api/v1/do/readings/last');
+    return this.http.get<Reading>('https://vv-dio-service-staging.herokuapp.com/api/v1/do/readings/last');
   }
 
   ngOnInit(): void {
