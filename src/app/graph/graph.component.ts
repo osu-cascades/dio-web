@@ -14,7 +14,13 @@ export class GraphComponent implements OnInit {
   isDataAvailable = false;
   lineChartData: Array<any> = [];
   lineChartLabels: Array<any> = [];
-  lineChartOptions: any = {responsive: true};
+  lineChartOptions: any = {
+    responsive: true,
+    tooltips: {
+      mode: 'index',
+      intersect: false
+    }
+  };
   public lineChartLegend = true;
   public lineChartType = 'line';
 
@@ -37,7 +43,6 @@ export class GraphComponent implements OnInit {
       reading.createdAt = moment(reading.createdAt).format('h:mma');
       this.lineChartLabels.push(reading.createdAt);
     });
-    console.log(this.recentReadings);
     this.lineChartData.push({data: data, label: 'DO'});
   }
 }

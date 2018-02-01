@@ -16,7 +16,6 @@ export class SensorDetailComponent implements OnInit {
   ngOnInit() {
     this.api.getLastSensorReading()
       .subscribe((reading) => {
-        console.log(reading);
         this.lastReading = reading[0];
         this.isDataReady = true;
       });
