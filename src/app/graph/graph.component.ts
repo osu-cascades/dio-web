@@ -30,6 +30,7 @@ export class GraphComponent implements OnInit {
   ngOnInit() {
     this.client.getRecentSensorReadings()
       .subscribe((readings) => {
+        console.log(readings);
         this.recentReadings = readings;
         this.transformData();
         this.isDataAvailable = true;
@@ -38,11 +39,15 @@ export class GraphComponent implements OnInit {
 
   transformData() {
     const data = [];
+    const labels = [];
     _.forEach(this.recentReadings, (reading) => {
-      data.push(reading.reading);
       reading.createdAt = moment(reading.createdAt).format('h:mma');
-      this.lineChartLabels.push(reading.createdAt);
+      labels.push(reading.createdAt);
+      data.push(reading.reading);
     });
+    data.reverse();
+    labels.reverse();
+    this.lineChartLabels = labels;
     this.lineChartData.push({data: data, label: 'DO'});
   }
 }
