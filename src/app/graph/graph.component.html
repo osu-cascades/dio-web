@@ -1,0 +1,22 @@
+<mat-card>
+
+  <mat-card-header>
+    <mat-card-title>
+      Dissolved Oxygen Levels
+    </mat-card-title>
+  </mat-card-header>
+
+  <mat-card-content>
+    <div style="display: block;" *ngIf="isDataAvailable">
+      <canvas baseChart
+              [datasets]="lineChartData"
+              [labels]="lineChartLabels"
+              [options]="lineChartOptions"
+              [colors]="lineChartColors"
+              [legend]="lineChartLegend"
+              [chartType]="lineChartType"
+      ></canvas>
+    </div>
+  </mat-card-content>
+</mat-card>
+
