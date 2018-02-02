@@ -13,6 +13,8 @@ import {AppRoutingModule} from './app-routing.module';
 import {GraphComponent} from './graph/graph.component';
 import {ApiService} from './services/api.service';
 import {HttpClientModule} from '@angular/common/http';
+import { HistoryComponent } from './history/history.component';
+import { AboutComponent } from './about/about.component';
 
 
 @NgModule({
@@ -21,7 +23,9 @@ import {HttpClientModule} from '@angular/common/http';
     HeaderComponent,
     SensorDetailComponent,
     HomeComponent,
-    GraphComponent
+    GraphComponent,
+    HistoryComponent,
+    AboutComponent
   ],
   imports: [
     BrowserModule,
