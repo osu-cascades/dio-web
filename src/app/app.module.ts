@@ -2,7 +2,11 @@ import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
 import {FlexLayoutModule} from '@angular/flex-layout';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {MatButtonModule, MatCardModule, MatIconModule, MatListModule, MatMenuModule, MatToolbarModule} from '@angular/material';
+import {
+  MatButtonModule, MatCardModule, MatDatepickerModule, MatFormFieldModule, MatIconModule, MatInputModule, MatListModule, MatMenuModule,
+  MatNativeDateModule,
+  MatToolbarModule
+} from '@angular/material';
 import {ChartsModule} from 'ng2-charts';
 
 import {AppComponent} from './app.component';
@@ -15,6 +19,7 @@ import {ApiService} from './services/api.service';
 import {HttpClientModule} from '@angular/common/http';
 import { HistoryComponent } from './history/history.component';
 import { AboutComponent } from './about/about.component';
+import { DateRangePickerComponent } from './date-range-picker/date-range-picker.component';
 
 
 @NgModule({
@@ -25,7 +30,8 @@ import { AboutComponent } from './about/about.component';
     HomeComponent,
     GraphComponent,
     HistoryComponent,
-    AboutComponent
+    AboutComponent,
+    DateRangePickerComponent
   ],
   imports: [
     BrowserModule,
@@ -39,6 +45,10 @@ import { AboutComponent } from './about/about.component';
     MatButtonModule,
     MatCardModule,
     MatListModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
     ChartsModule
   ],
   providers: [ApiService],
