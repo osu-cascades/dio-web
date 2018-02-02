@@ -2,7 +2,7 @@ import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
 import {FlexLayoutModule} from '@angular/flex-layout';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {MatButtonModule, MatCardModule, MatIconModule, MatMenuModule, MatToolbarModule} from '@angular/material';
+import {MatButtonModule, MatCardModule, MatIconModule, MatListModule, MatMenuModule, MatToolbarModule} from '@angular/material';
 import {ChartsModule} from 'ng2-charts';
 
 import {AppComponent} from './app.component';
@@ -38,6 +38,7 @@ import { AboutComponent } from './about/about.component';
     MatIconModule,
     MatButtonModule,
     MatCardModule,
+    MatListModule,
     ChartsModule
   ],
   providers: [ApiService],
