@@ -1,5 +1,4 @@
-import {Component, OnInit} from '@angular/core';
-import {ApiService} from '../services/api.service';
+import {Component, Input, OnInit} from '@angular/core';
 import * as moment from 'moment';
 import * as _ from 'lodash';
 import 'rxjs/add/operator/map';
@@ -10,8 +9,7 @@ import 'rxjs/add/operator/map';
   styleUrls: ['./graph.component.css']
 })
 export class GraphComponent implements OnInit {
-  recentReadings: Reading[];
-  isDataAvailable = false;
+  @Input() readings: Reading[];
   lineChartData: Array<any> = [];
   lineChartLabels: Array<any> = [];
   lineChartOptions: any = {
@@ -24,30 +22,25 @@ export class GraphComponent implements OnInit {
   public lineChartLegend = true;
   public lineChartType = 'line';
 
-  constructor(private client: ApiService) {
+  constructor() {
   }
 
   ngOnInit() {
-    this.client.getRecentSensorReadings()
-      .subscribe((readings) => {
-        this.recentReadings = readings;
-        this.transformData();
-        this.isDataAvailable = true;
-      });
+    this.transformData(this.readings);
   }
 
-  transformData() {
-    const data = [];
+  transformData(data: Reading[]) {
+    const chartData = [];
     const labels = [];
-    _.forEach(this.recentReadings, (reading) => {
-      reading.createdAt = moment(reading.createdAt).format('h:mm:ssa');
+    _.forEach(data, (reading) => {
+      reading.createdAt = moment(reading.createdAt).format('h:mma');
       labels.push(reading.createdAt);
-      data.push(reading.reading);
+      chartData.push(reading.reading);
     });
-    data.reverse();
+    chartData.reverse();
     labels.reverse();
     this.lineChartLabels = labels;
-    this.lineChartData.push({data: data, label: 'DO'});
+    this.lineChartData.push({data: chartData, label: 'DO'});
   }
 }
 
