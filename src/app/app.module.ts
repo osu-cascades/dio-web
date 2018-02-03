@@ -20,6 +20,7 @@ import {HttpClientModule} from '@angular/common/http';
 import { HistoryComponent } from './history/history.component';
 import { AboutComponent } from './about/about.component';
 import { DateRangePickerComponent } from './date-range-picker/date-range-picker.component';
+import {FormsModule} from '@angular/forms';
 
 
 @NgModule({
@@ -35,6 +36,7 @@ import { DateRangePickerComponent } from './date-range-picker/date-range-picker.
   ],
   imports: [
     BrowserModule,
+    FormsModule,
     AppRoutingModule,
     HttpClientModule,
     BrowserAnimationsModule,
