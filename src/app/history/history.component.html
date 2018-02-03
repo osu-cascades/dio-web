@@ -7,8 +7,10 @@
       Select a start date and an end date to compare data
     </mat-card-subtitle>
     <mat-card-content>
-      <app-date-range-picker></app-date-range-picker>
+      <app-date-range-picker (didSubmit)="rangeChanged($event)"></app-date-range-picker>
     </mat-card-content>
   </mat-card>
-  <app-graph></app-graph>
+  <div *ngIf="isDataAvailable">
+    <app-graph [readings]="readings"></app-graph>
+  </div>
 </div>
