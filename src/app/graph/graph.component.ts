@@ -30,7 +30,6 @@ export class GraphComponent implements OnInit {
   ngOnInit() {
     this.client.getRecentSensorReadings()
       .subscribe((readings) => {
-        console.log(readings);
         this.recentReadings = readings;
         this.transformData();
         this.isDataAvailable = true;
@@ -53,9 +52,7 @@ export class GraphComponent implements OnInit {
 }
 
 export class Reading {
-  id: number;
   reading: number;
   location: string;
   createdAt: string;
-  updatedAt: string;
 }
