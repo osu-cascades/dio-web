@@ -16,6 +16,7 @@ export class DateRangePickerComponent implements OnInit {
 
   ngOnInit() {
   }
+
   submitRequest() {
     this.request.startDate = moment(this.dateForm.value.startDate).toISOString();
     this.request.endDate = moment(this.dateForm.value.endDate).toISOString();

@@ -21,16 +21,14 @@ export class HistoryComponent implements OnInit {
   ngOnInit() {
   }
 
-  rangeChanged(sent: boolean) {
-    if (sent) {
-      this.request = this.graphService.getRequestData();
-      this.client.getReadingsInRange(this.request)
-        .subscribe((readings) => {
-          console.log(readings);
-          this.readings = readings;
-          this.isDataAvailable = true;
-        });
-    }
+  rangeChanged(event) {
+    this.request = this.graphService.getRequestData();
+    this.client.getReadingsInRange(this.request)
+      .subscribe((readings) => {
+        console.log(readings);
+        this.readings = readings;
+        this.isDataAvailable = true;
+      });
   }
 
 }
