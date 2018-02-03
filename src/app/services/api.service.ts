@@ -1,5 +1,5 @@
 import {Injectable, OnInit} from '@angular/core';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 import {Reading} from '../graph/graph.component';
 import 'rxjs/add/operator/map';
 import {DateRangeRequest} from '../date-range-picker/date-range-picker.component';
@@ -19,8 +19,8 @@ export class ApiService implements OnInit {
   }
 
   submitQuery(request: DateRangeRequest) {
-    return this.http.post<DateRangeRequest>(`https://vv-dio-service-staging.herokuapp.com/api/v1/do/query`, request,
-      {headers: this.headers});
+    const options = request ? { params: new HttpParams().set('start', request.startDate).set('end', request.endDate) } : {};
+    return this.http.get<DateRangeRequest>(`https://vv-dio-service-staging.herokuapp.com/api/v1/do/readings/query`, options);
   }
 
   ngOnInit(): void {

@@ -1,5 +1,6 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {ApiService} from '../services/api.service';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-date-range-picker',
@@ -15,7 +16,9 @@ export class DateRangePickerComponent implements OnInit {
   ngOnInit() {
   }
   submitRequest() {
-    this.client.submitQuery(this.dateForm.value)
+    this.request.startDate = moment(this.dateForm.value.startDate).toISOString();
+    this.request.endDate = moment(this.dateForm.value.endDate).toISOString();
+    this.client.submitQuery(this.request)
       .subscribe((response) => console.log(response));
   }
 }
