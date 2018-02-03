@@ -16,7 +16,7 @@
       <mat-datepicker #endPicker></mat-datepicker>
     </mat-form-field>
 
-    <button type="submit" mat-button color="primary" [disabled]="" (click)="submitRequest()">Submit</button>
+    <button type="submit" mat-button color="primary" [disabled]="!dateForm.form.valid" (click)="submitRequest()">Submit</button>
 
   </form>
   <!--<div class="example-events">-->

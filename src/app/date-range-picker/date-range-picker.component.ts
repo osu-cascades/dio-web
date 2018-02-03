@@ -1,6 +1,5 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import {MatDatepickerInputEvent} from '@angular/material';
-
+import {ApiService} from '../services/api.service';
 
 @Component({
   selector: 'app-date-range-picker',
@@ -8,26 +7,20 @@ import {MatDatepickerInputEvent} from '@angular/material';
   styleUrls: ['./date-range-picker.component.css']
 })
 export class DateRangePickerComponent implements OnInit {
-  @ViewChild('picker') picker;
   @ViewChild('dateForm') dateForm;
   request: DateRangeRequest = new DateRangeRequest();
-  events: string[] = [];
 
-  addEvent(type: string, event: MatDatepickerInputEvent<Date>) {
-    this.events.push(`${type}: ${event.value}`);
-  }
-  submitRequest() {
-    console.log(this.dateForm);
-  }
-
-  constructor() { }
+  constructor(private client: ApiService) { }
 
   ngOnInit() {
   }
-
+  submitRequest() {
+    this.client.submitQuery(this.dateForm.value)
+      .subscribe((response) => console.log(response));
+  }
 }
 
-class DateRangeRequest {
+export class DateRangeRequest {
   startDate: string;
   endDate: string;
 }
