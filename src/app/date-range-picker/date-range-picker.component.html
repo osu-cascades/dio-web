@@ -2,7 +2,6 @@
   <form #dateForm="ngForm">
     <mat-form-field>
       <input matInput [matDatepicker]="startPicker" placeholder="Choose a start date"
-             (dateInput)="addEvent('input', $event)" (dateChange)="addEvent('change', $event)"
              name="startDate" [(ngModel)]="request.startDate" required>
       <mat-datepicker-toggle matSuffix [for]="startPicker"></mat-datepicker-toggle>
       <mat-datepicker #startPicker></mat-datepicker>
@@ -10,7 +9,6 @@
 
     <mat-form-field>
       <input matInput [matDatepicker]="endPicker" placeholder="Choose an end date"
-             (dateInput)="addEvent('input', $event)" (dateChange)="addEvent('change', $event)"
              name="endDate" [(ngModel)]="request.endDate" required>
       <mat-datepicker-toggle matSuffix [for]="endPicker"></mat-datepicker-toggle>
       <mat-datepicker #endPicker></mat-datepicker>
@@ -19,7 +17,4 @@
     <button type="submit" mat-button color="primary" [disabled]="!dateForm.form.valid" (click)="submitRequest()">Submit</button>
 
   </form>
-  <!--<div class="example-events">-->
-    <!--<div *ngFor="let e of events">{{e}}</div>-->
-  <!--</div>-->
 </div>
