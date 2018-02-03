@@ -17,10 +17,11 @@ import {AppRoutingModule} from './app-routing.module';
 import {GraphComponent} from './graph/graph.component';
 import {ApiService} from './services/api.service';
 import {HttpClientModule} from '@angular/common/http';
-import { HistoryComponent } from './history/history.component';
-import { AboutComponent } from './about/about.component';
-import { DateRangePickerComponent } from './date-range-picker/date-range-picker.component';
+import {HistoryComponent} from './history/history.component';
+import {AboutComponent} from './about/about.component';
+import {DateRangePickerComponent} from './date-range-picker/date-range-picker.component';
 import {FormsModule} from '@angular/forms';
+import {GraphService} from './services/graph.service';
 
 
 @NgModule({
@@ -53,7 +54,8 @@ import {FormsModule} from '@angular/forms';
     MatNativeDateModule,
     ChartsModule
   ],
-  providers: [ApiService],
+  providers: [ApiService, GraphService],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}
