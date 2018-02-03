@@ -18,7 +18,7 @@ export class ApiService implements OnInit {
     return this.http.get<Reading>('https://vv-dio-service-staging.herokuapp.com/api/v1/do/readings/last');
   }
 
-  submitQuery(request: DateRangeRequest) {
+  getReadingsInRange(request: DateRangeRequest) {
     const options = request ? { params: new HttpParams().set('start', request.startDate).set('end', request.endDate) } : {};
     return this.http.get<DateRangeRequest>(`https://vv-dio-service-staging.herokuapp.com/api/v1/do/readings/query`, options);
   }

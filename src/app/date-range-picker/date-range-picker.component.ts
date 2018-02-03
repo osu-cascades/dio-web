@@ -18,7 +18,7 @@ export class DateRangePickerComponent implements OnInit {
   submitRequest() {
     this.request.startDate = moment(this.dateForm.value.startDate).toISOString();
     this.request.endDate = moment(this.dateForm.value.endDate).toISOString();
-    this.client.submitQuery(this.request)
+    this.client.getReadingsInRange(this.request)
       .subscribe((response) => console.log(response));
   }
 }
