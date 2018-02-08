@@ -1,6 +1,6 @@
 import {Component, EventEmitter, OnInit, Output, ViewChild} from '@angular/core';
-import * as moment from 'moment';
 import {GraphService} from '../services/graph.service';
+import {DatetimeService} from '../services/datetime.service';
 
 @Component({
   selector: 'app-date-range-picker',
@@ -12,14 +12,15 @@ export class DateRangePickerComponent implements OnInit {
   @Output() didSubmit = new EventEmitter<boolean>();
   request: DateRangeRequest = new DateRangeRequest();
 
-  constructor(private graphService: GraphService) { }
+  constructor(private graphService: GraphService,
+              private datetimeService: DatetimeService) { }
 
   ngOnInit() {
   }
 
   submitRequest() {
-    this.request.startDate = moment(this.dateForm.value.startDate).toISOString();
-    this.request.endDate = moment(this.dateForm.value.endDate).toISOString();
+    this.request.startDate = this.datetimeService.getEarliestTimeOnDay(this.dateForm.value.startDate);
+    this.request.endDate = this.datetimeService.getLatestTimeOnDay(this.dateForm.value.endDate);
     this.graphService.sendRequestData(this.request);
     this.didSubmit.emit(true);
   }

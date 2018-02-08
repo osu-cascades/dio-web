@@ -7,11 +7,11 @@ export class DatetimeService {
 
   constructor() {}
 
-  getEarliestTimeOnDay(datetime: string) {
-    return moment(datetime).startOf('day').format(this.MySqlFormat);
+  getEarliestTimeOnDay(datetime: string): string {
+    return moment(datetime).startOf('day').toISOString();
   }
 
-  getLatestTimeOnday(datetime: string) {
-    return moment(datetime).endOf('day').format(this.MySqlFormat);
+  getLatestTimeOnDay(datetime: string): string {
+    return moment(datetime).endOf('day').toISOString();
   }
 }
