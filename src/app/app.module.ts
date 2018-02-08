@@ -22,6 +22,7 @@ import {AboutComponent} from './about/about.component';
 import {DateRangePickerComponent} from './date-range-picker/date-range-picker.component';
 import {FormsModule} from '@angular/forms';
 import {GraphService} from './services/graph.service';
+import {DatetimeService} from './services/datetime.service';
 
 
 @NgModule({
@@ -54,7 +55,7 @@ import {GraphService} from './services/graph.service';
     MatNativeDateModule,
     ChartsModule
   ],
-  providers: [ApiService, GraphService],
+  providers: [ApiService, GraphService, DatetimeService],
   bootstrap: [AppComponent]
 })
 export class AppModule {
