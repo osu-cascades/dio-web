@@ -19,8 +19,8 @@ export class DateRangePickerComponent implements OnInit {
   }
 
   submitRequest() {
-    this.request.startDate = this.datetimeService.getEarliestTimeOnDay(this.dateForm.value.startDate);
-    this.request.endDate = this.datetimeService.getLatestTimeOnDay(this.dateForm.value.endDate);
+    this.request.startDate = DatetimeService.getEarliestLocalTimeOnDay(this.dateForm.value.startDate);
+    this.request.endDate = DatetimeService.getLatestLocalTimeOnDay(this.dateForm.value.endDate);
     this.graphService.sendRequestData(this.request);
     this.didSubmit.emit(true);
   }

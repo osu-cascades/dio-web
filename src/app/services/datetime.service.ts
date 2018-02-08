@@ -7,11 +7,19 @@ export class DatetimeService {
 
   constructor() {}
 
-  getEarliestTimeOnDay(datetime: string): string {
+  static getEarliestLocalTimeOnDay(datetime: string): string {
     return moment(datetime).startOf('day').toISOString();
   }
 
-  getLatestTimeOnDay(datetime: string): string {
+  static getLatestLocalTimeOnDay(datetime: string): string {
     return moment(datetime).endOf('day').toISOString();
+  }
+
+  static getEarliestUtcTimeOnDay(datetime: string): string {
+    return moment(datetime).utc().startOf('day').toISOString();
+  }
+
+  static getLatestUtcTimeOnDay(datetime: string): string {
+    return moment(datetime).utc().endOf('day').toISOString();
   }
 }
