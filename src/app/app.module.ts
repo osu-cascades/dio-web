@@ -24,6 +24,8 @@ import {FormsModule} from '@angular/forms';
 import {GraphService} from './services/graph.service';
 import {DatetimeService} from './services/datetime.service';
 import { HarvestsComponent } from './harvests/harvests.component';
+import { HarvestListComponent } from './harvest-list/harvest-list.component';
+import { HarvestDetailComponent } from './harvest-detail/harvest-detail.component';
 
 
 @NgModule({
@@ -36,7 +38,9 @@ import { HarvestsComponent } from './harvests/harvests.component';
     HistoryComponent,
     AboutComponent,
     DateRangePickerComponent,
-    HarvestsComponent
+    HarvestsComponent,
+    HarvestListComponent,
+    HarvestDetailComponent
   ],
   imports: [
     BrowserModule,
