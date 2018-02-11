@@ -1,3 +1,5 @@
-<p>
-  harvest-list works!
-</p>
+<div *ngIf="dataIsAvailable">
+  <div *ngFor="let harvest of harvests; let i = index">
+    <app-harvest-detail [harvest]="harvests[i]"></app-harvest-detail>
+  </div>
+</div>
