@@ -23,6 +23,7 @@ import {DateRangePickerComponent} from './date-range-picker/date-range-picker.co
 import {FormsModule} from '@angular/forms';
 import {GraphService} from './services/graph.service';
 import {DatetimeService} from './services/datetime.service';
+import { HarvestsComponent } from './harvests/harvests.component';
 
 
 @NgModule({
@@ -34,7 +35,8 @@ import {DatetimeService} from './services/datetime.service';
     GraphComponent,
     HistoryComponent,
     AboutComponent,
-    DateRangePickerComponent
+    DateRangePickerComponent,
+    HarvestsComponent
   ],
   imports: [
     BrowserModule,
