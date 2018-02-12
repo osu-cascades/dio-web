@@ -1,5 +1,7 @@
-<div *ngIf="dataIsAvailable">
+<div fxLayout="row" fxLayoutGap="10px" *ngIf="dataIsAvailable">
   <div *ngFor="let harvest of harvests; let i = index">
-    <app-harvest-detail [harvest]="harvests[i]"></app-harvest-detail>
+    <div fxFlex="100%">
+      <app-harvest-detail [harvest]="harvests[i]"></app-harvest-detail>
+    </div>
   </div>
 </div>
