@@ -27,6 +27,10 @@ export class ApiService implements OnInit {
     return this.http.get<Harvest[]>('http://localhost:3000/api/v1/harvests');
   }
 
+  createHarvest() {
+    return this.http.post('http://localhost:3000/api/v1/harvests', );
+  }
+
   ngOnInit(): void {
   }
 }
