@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {Harvest} from '../services/api.service';
+import {Harvest} from '../services/harvests.service';
 
 @Component({
   selector: 'app-harvest-detail',

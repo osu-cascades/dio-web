@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import {ApiService, Harvest} from '../services/api.service';
+import {Component, OnInit} from '@angular/core';
+import {Harvest, HarvestsService} from '../services/harvests.service';
 
 @Component({
   selector: 'app-harvest-list',
@@ -10,13 +10,19 @@ export class HarvestListComponent implements OnInit {
   harvests: Harvest[] = [];
   dataIsAvailable = false;
 
-  constructor(private api: ApiService) { }
+  constructor(private harvestsService: HarvestsService) {
+  }
 
   ngOnInit() {
-    this.api.getHarvestList()
+    this.harvestsService.getHarvestList()
       .subscribe((harvests) => {
         this.harvests = harvests;
         this.dataIsAvailable = true;
+      });
+
+    this.harvestsService.harvestCreated
+      .subscribe((harvest: Harvest) => {
+        this.harvests.push(harvest);
       });
   }
 

@@ -23,21 +23,6 @@ export class ApiService implements OnInit {
     return this.http.get<Reading[]>(`https://vv-dio-service-staging.herokuapp.com/api/v1/do/readings/query`, options);
   }
 
-  getHarvestList() {
-    return this.http.get<Harvest[]>('http://localhost:3000/api/v1/harvests');
-  }
-
-  createHarvest() {
-    return this.http.post('http://localhost:3000/api/v1/harvests', );
-  }
-
   ngOnInit(): void {
   }
-}
-
-export class Harvest {
-  id: number;
-  name: string;
-  startDate: string;
-  endDate?: string;
 }

@@ -23,9 +23,10 @@ import {DateRangePickerComponent} from './date-range-picker/date-range-picker.co
 import {FormsModule} from '@angular/forms';
 import {GraphService} from './services/graph.service';
 import {DatetimeService} from './services/datetime.service';
-import { HarvestsComponent } from './harvests/harvests.component';
-import { HarvestListComponent } from './harvest-list/harvest-list.component';
-import { HarvestDetailComponent } from './harvest-detail/harvest-detail.component';
+import {HarvestsComponent} from './harvests/harvests.component';
+import {HarvestListComponent} from './harvest-list/harvest-list.component';
+import {HarvestDetailComponent} from './harvest-detail/harvest-detail.component';
+import {HarvestsService} from './services/harvests.service';
 
 
 @NgModule({
@@ -61,7 +62,7 @@ import { HarvestDetailComponent } from './harvest-detail/harvest-detail.componen
     MatNativeDateModule,
     ChartsModule
   ],
-  providers: [ApiService, GraphService, DatetimeService],
+  providers: [ApiService, GraphService, DatetimeService, HarvestsService],
   bootstrap: [AppComponent]
 })
 export class AppModule {

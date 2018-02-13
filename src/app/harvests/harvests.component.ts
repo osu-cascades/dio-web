@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {ApiService} from '../services/api.service';
+import {HarvestsService} from '../services/harvests.service';
 
 @Component({
   selector: 'app-harvests',
@@ -8,15 +8,15 @@ import {ApiService} from '../services/api.service';
 })
 export class HarvestsComponent implements OnInit {
 
-  constructor(private api: ApiService) { }
+  constructor(private harvestsService: HarvestsService) { }
 
   ngOnInit() {
   }
 
   createHarvest() {
-    this.api.createHarvest()
+    this.harvestsService.createHarvest()
       .subscribe((response) => {
-        console.log(response);
+        this.harvestsService.harvestCreated.next(response);
       });
   }
 
