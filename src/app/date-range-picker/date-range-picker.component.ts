@@ -1,4 +1,4 @@
-import {Component, EventEmitter, OnInit, Output, ViewChild} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {GraphService} from '../services/graph.service';
 import {DatetimeService} from '../services/datetime.service';
 
@@ -9,11 +9,9 @@ import {DatetimeService} from '../services/datetime.service';
 })
 export class DateRangePickerComponent implements OnInit {
   @ViewChild('dateForm') dateForm;
-  @Output() didSubmit = new EventEmitter<boolean>();
   request: DateRangeRequest = new DateRangeRequest();
 
-  constructor(private graphService: GraphService,
-              private datetimeService: DatetimeService) { }
+  constructor(private graphService: GraphService) { }
 
   ngOnInit() {
   }
@@ -21,8 +19,7 @@ export class DateRangePickerComponent implements OnInit {
   submitRequest() {
     this.request.startDate = DatetimeService.getEarliestLocalTimeOnDay(this.dateForm.value.startDate);
     this.request.endDate = DatetimeService.getLatestLocalTimeOnDay(this.dateForm.value.endDate);
-    this.graphService.sendRequestData(this.request);
-    this.didSubmit.emit(true);
+    this.graphService.dateRangeRequest.next(this.request);
   }
 }
 

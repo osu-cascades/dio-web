@@ -1,7 +1,9 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input, OnInit, ViewChild} from '@angular/core';
 import * as moment from 'moment';
 import * as _ from 'lodash';
 import 'rxjs/add/operator/map';
+import {GraphService} from '../services/graph.service';
+import {BaseChartDirective} from 'ng2-charts';
 
 @Component({
   selector: 'app-graph',
@@ -10,6 +12,7 @@ import 'rxjs/add/operator/map';
 })
 export class GraphComponent implements OnInit {
   @Input() readings: Reading[];
+  @ViewChild(BaseChartDirective) chart;
   lineChartData: Array<any> = [];
   lineChartLabels: Array<any> = [];
   lineChartOptions: any = {
@@ -22,11 +25,23 @@ export class GraphComponent implements OnInit {
   public lineChartLegend = true;
   public lineChartType = 'line';
 
-  constructor() {
+  constructor(private graphService: GraphService) {
   }
 
   ngOnInit() {
     this.transformData(this.readings);
+    this.graphService.dataChanged.subscribe((readings) => {
+      this.clearData();
+      this.transformData(readings);
+    });
+  }
+
+  clearData() {
+    this.lineChartLabels.pop();
+    _.forEach(this.lineChartData, (item) => {
+      item.data.pop();
+    });
+    this.chart.chart.update();
   }
 
   transformData(data: Reading[]) {

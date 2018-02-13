@@ -10,7 +10,6 @@ import {DateRangeRequest} from '../date-range-picker/date-range-picker.component
   styleUrls: ['./history.component.css']
 })
 export class HistoryComponent implements OnInit {
-  request: DateRangeRequest;
   readings: Reading[];
   isDataAvailable = false;
 
@@ -19,16 +18,16 @@ export class HistoryComponent implements OnInit {
   }
 
   ngOnInit() {
-  }
-
-  rangeChanged(event) {
-    this.request = this.graphService.getRequestData();
-    this.client.getReadingsInRange(this.request)
-      .subscribe((readings) => {
-        console.log(readings);
-        this.readings = readings;
-        this.isDataAvailable = true;
+    this.graphService.dateRangeRequest
+      .subscribe((request) => {
+        this.client.getReadingsInRange(request)
+          .subscribe((readings) => {
+            this.readings = readings;
+            this.isDataAvailable = true;
+            this.graphService.dataChanged.next(readings);
+          });
       });
   }
+
 
 }
