@@ -4,6 +4,7 @@ import {HomeComponent} from './home/home.component';
 import {AboutComponent} from './about/about.component';
 import {HistoryComponent} from './history/history.component';
 import {HarvestsComponent} from './harvests/harvests.component';
+import {HarvestEditComponent} from './harvest-edit/harvest-edit.component';
 
 const routes: Routes = [
   {
@@ -14,6 +15,9 @@ const routes: Routes = [
   },
   {
     path: 'harvests', component: HarvestsComponent
+  },
+  {
+    path: 'harvests/:id', component: HarvestEditComponent
   },
   {
     path: 'history', component: HistoryComponent

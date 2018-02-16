@@ -17,6 +17,10 @@ export class HarvestsService {
     return this.http.post<Harvest>('http://localhost:3000/api/v1/harvests', {});
   }
 
+  getHarvest(harvestId: number) {
+    return this.http.get<Harvest>(`http://localhost:3000/api/vi/harvests/${harvestId}`);
+  }
+
 }
 
 export class Harvest {

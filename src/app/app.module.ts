@@ -27,6 +27,7 @@ import {HarvestsComponent} from './harvests/harvests.component';
 import {HarvestListComponent} from './harvest-list/harvest-list.component';
 import {HarvestDetailComponent} from './harvest-detail/harvest-detail.component';
 import {HarvestsService} from './services/harvests.service';
+import {HarvestEditComponent} from './harvest-edit/harvest-edit.component';
 
 
 @NgModule({
@@ -41,7 +42,8 @@ import {HarvestsService} from './services/harvests.service';
     DateRangePickerComponent,
     HarvestsComponent,
     HarvestListComponent,
-    HarvestDetailComponent
+    HarvestDetailComponent,
+    HarvestEditComponent
   ],
   imports: [
     BrowserModule,
