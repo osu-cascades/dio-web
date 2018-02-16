@@ -11,19 +11,19 @@ export class HarvestsService {
   }
 
   getHarvestList() {
-    return this.http.get<Harvest[]>('http://localhost:3000/api/v1/harvests');
+    return this.http.get<Harvest[]>('https://vv-dio-service-staging.herokuapp.com/api/v1/harvests');
   }
 
   createHarvest() {
-    return this.http.post<Harvest>('http://localhost:3000/api/v1/harvests', {});
+    return this.http.post<Harvest>('https://vv-dio-service-staging.herokuapp.com/api/v1/harvests', {});
   }
 
   getHarvest(harvestId: number) {
-    return this.http.get<Harvest>(`http://localhost:3000/api/v1/harvests/${harvestId}`);
+    return this.http.get<Harvest>(`https://vv-dio-service-staging.herokuapp.com/api/v1/harvests/${harvestId}`);
   }
 
   deleteHarvest(harvestId: number) {
-    return this.http.delete(`http://localhost:3000/api/v1/harvests/${harvestId}`);
+    return this.http.delete(`https://vv-dio-service-staging.herokuapp.com/api/v1/harvests/${harvestId}`);
   }
 
 }
