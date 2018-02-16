@@ -3,7 +3,8 @@ import {NgModule} from '@angular/core';
 import {FlexLayoutModule} from '@angular/flex-layout';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {
-  MatButtonModule, MatCardModule, MatDatepickerModule, MatFormFieldModule, MatIconModule, MatInputModule, MatListModule, MatMenuModule,
+  MatButtonModule, MatCardModule, MatDatepickerModule, MatDialogModule, MatFormFieldModule, MatIconModule, MatInputModule, MatListModule,
+  MatMenuModule,
   MatNativeDateModule,
   MatToolbarModule
 } from '@angular/material';
@@ -28,6 +29,7 @@ import {HarvestListComponent} from './harvest-list/harvest-list.component';
 import {HarvestDetailComponent} from './harvest-detail/harvest-detail.component';
 import {HarvestsService} from './services/harvests.service';
 import {HarvestEditComponent} from './harvest-edit/harvest-edit.component';
+import { ConfirmationDialogueComponent } from './confirmation-dialogue/confirmation-dialogue.component';
 
 
 @NgModule({
@@ -43,7 +45,8 @@ import {HarvestEditComponent} from './harvest-edit/harvest-edit.component';
     HarvestsComponent,
     HarvestListComponent,
     HarvestDetailComponent,
-    HarvestEditComponent
+    HarvestEditComponent,
+    ConfirmationDialogueComponent
   ],
   imports: [
     BrowserModule,
@@ -62,10 +65,12 @@ import {HarvestEditComponent} from './harvest-edit/harvest-edit.component';
     MatInputModule,
     MatDatepickerModule,
     MatNativeDateModule,
+    MatDialogModule,
     ChartsModule
   ],
   providers: [ApiService, GraphService, DatetimeService, HarvestsService],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [ConfirmationDialogueComponent]
 })
 export class AppModule {
 }
