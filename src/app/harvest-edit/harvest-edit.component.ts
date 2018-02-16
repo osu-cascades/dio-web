@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Harvest, HarvestsService} from '../services/harvests.service';
 import {ActivatedRoute} from '@angular/router';
-import {Observable} from 'rxjs/Observable';
+import 'rxjs/add/operator/switchMap';
 
 @Component({
   selector: 'app-harvest-edit',
@@ -12,14 +12,14 @@ export class HarvestEditComponent implements OnInit {
   harvest = new Harvest();
 
   constructor(private harvestService: HarvestsService,
-              private route: ActivatedRoute) { }
+              private route: ActivatedRoute) {
+  }
 
   ngOnInit() {
-    const harvestId: Observable<string> = this.route.params.map((param) => param.id);
-    this.harvestService.getHarvest(+harvestId)
-      .subscribe((harvest) => {
-        this.harvest = harvest;
-      });
+    this.route.params
+      .map(params => params['id'])
+      .switchMap(id => this.harvestService.getHarvest(id))
+      .subscribe(harvest => this.harvest = harvest);
   }
 
 }
