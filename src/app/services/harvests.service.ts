@@ -5,6 +5,7 @@ import {HttpClient} from '@angular/common/http';
 @Injectable()
 export class HarvestsService {
   harvestCreated = new Subject<Harvest>();
+  harvestRemoved = new Subject<Harvest>();
 
   constructor(private http: HttpClient) {
   }
@@ -21,9 +22,14 @@ export class HarvestsService {
     return this.http.get<Harvest>(`http://localhost:3000/api/vi/harvests/${harvestId}`);
   }
 
+  deleteHarvest(harvestId: number) {
+    return this.http.delete(`http://localhost:3000/api/v1/harvests/${harvestId}`);
+  }
+
 }
 
 export class Harvest {
+  id: number;
   name: string;
   startDate?: string;
   endDate?: string;

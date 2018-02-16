@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Harvest, HarvestsService} from '../services/harvests.service';
+import {HttpResponse} from '@angular/common/http';
 
 @Component({
   selector: 'app-harvest-list',
@@ -24,6 +25,12 @@ export class HarvestListComponent implements OnInit {
       .subscribe((harvest: Harvest) => {
         this.harvests.push(harvest);
       });
-  }
 
+    this.harvestsService.harvestRemoved
+      .subscribe((harvest) => {
+        const index = this.harvests.indexOf(harvest);
+        this.harvests.splice(index, 1);
+      });
+
+  }
 }
